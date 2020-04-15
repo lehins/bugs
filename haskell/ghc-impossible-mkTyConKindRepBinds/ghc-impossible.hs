@@ -1,3 +1,4 @@
+{-# LANGUAGE ExistentialQuantification #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
@@ -17,7 +18,7 @@ newtype MutGen g = MutGen g
 data MutVar s g
 
 instance (s ~ StateToken m, Monad m) => MonadRandom (MutGen g) m where
-  data GenM (MutGen g) m = MutGenM (MutVar s g)
+  newtype GenM (MutGen g) m = MutGenM (MutVar s g)
 -- Correct version below compiles:
 --  newtype GenM (MutGen g) m = MutGenM (MutVar (StateToken m) g)
 
