@@ -95,8 +95,8 @@ instance Integral Int8 where
         (# d#, m# #) -> (I8# d#, I8# m#)
   toInteger (I8# x#) = smallInteger (extendInt8# x#)
 
-divInt8# :: Int8# -> Int8# -> Int8#
-divInt8# x# y# = narrowInt8# (divInt# (extendInt8# x#) (extendInt8# y#))
+-- divInt8# :: Int8# -> Int8# -> Int8#
+-- divInt8# x# y# = narrowInt8# (divInt# (extendInt8# x#) (extendInt8# y#))
 
 modInt8# :: Int8# -> Int8# -> Int8#
 modInt8# x# y# = narrowInt8# (modInt# (extendInt8# x#) (extendInt8# y#))
@@ -107,13 +107,13 @@ divModInt8# x# y# =
     (# q#, r# #) -> (# narrowInt8# q#, narrowInt8# r# #)
 
 
--- divInt8# :: Int8# -> Int8# -> Int8#
--- x# `divInt8#` y#
---   | isTrue# (x# `gtInt8#` zero#) && isTrue# (y# `ltInt8#` zero#) =
---     ((x# `subInt8#` one#) `quotInt8#` y#) `subInt8#` one#
---   | isTrue# (x# `ltInt8#` zero#) && isTrue# (y# `gtInt8#` zero#) =
---     ((x# `plusInt8#` one#) `quotInt8#` y#) `subInt8#` one#
---   | otherwise = x# `quotInt8#` y#
---   where
---     zero# = narrowInt8# 0#
---     one# = narrowInt8# 1#
+divInt8# :: Int8# -> Int8# -> Int8#
+x# `divInt8#` y#
+  | isTrue# (x# `gtInt8#` zero#) && isTrue# (y# `ltInt8#` zero#) =
+    ((x# `subInt8#` one#) `quotInt8#` y#) `subInt8#` one#
+  | isTrue# (x# `ltInt8#` zero#) && isTrue# (y# `gtInt8#` zero#) =
+    ((x# `plusInt8#` one#) `quotInt8#` y#) `subInt8#` one#
+  | otherwise = x# `quotInt8#` y#
+  where
+    zero# = narrowInt8# 0#
+    one# = narrowInt8# 1#
