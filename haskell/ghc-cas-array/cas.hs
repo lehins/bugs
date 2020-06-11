@@ -3,6 +3,12 @@
 import GHC.Exts
 import GHC.IO
 
+showAddr :: a -> IO String
+showAddr a = do
+  p <- IO $ \s -> case anyToAddr# a s of
+                    (# s', a# #) -> (# s', Ptr a# #)
+  pure $ show p
+
 data MutableArray a = MutableArray (MutableArray# RealWorld a)
 
 readArray :: MutableArray a -> Int -> IO a
@@ -24,15 +30,18 @@ casArrayBug :: IO ()
 casArrayBug = do
   arr <- newArray 1 99
   expected <- readArray arr 0
+  expectedPtr <- showAddr expected
   (hasFailed, actual) <- casArray arr 0 expected 100
+  actualPtr <- showAddr actual
   current <- readArray arr 0
+  currentPtr <- showAddr current
   putStrLn $
     unlines
       [ "========== Boxed Array ==========="
-      , "Expected: " ++ show expected
-      , "Actual: " ++ show actual
+      , "Expected: " ++ show expected ++ " <" ++ expectedPtr ++ ">"
+      , "Actual: " ++ show actual ++ " <" ++ actualPtr ++ ">"
       , "Has CAS failed: " ++ show hasFailed
-      , "Current: " ++ show current
+      , "Current: " ++ show current ++ " <" ++ currentPtr ++ ">"
       ]
 
 
