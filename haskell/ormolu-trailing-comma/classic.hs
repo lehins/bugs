@@ -1,3 +1,7 @@
+import Control.Exception
+
+main :: IO ()
+main = pure ()
 
 lists :: [String]
 lists =
