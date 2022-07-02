@@ -1,0 +1,818 @@
+==================== Tidy Core ====================
+Result size of Tidy Core
+  = {terms: 1,117, types: 1,889, coercions: 521, joins: 5/45}
+
+-- RHS size: {terms: 2, types: 5, coercions: 0, joins: 0/0}
+lvl :: () -> Step () (Chunk Vector Int)
+lvl = \ _ -> Done
+
+-- RHS size: {terms: 2, types: 3, coercions: 0, joins: 0/0}
+lvl1 :: () -> Step () Int
+lvl1 = \ _ -> Done
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl2 :: Addr#
+lvl2 = "consBundle"#
+
+-- RHS size: {terms: 17, types: 53, coercions: 23, joins: 0/0}
+main4 :: State# RealWorld -> (# State# RealWorld, Vector Int #)
+main4
+  = \ (s1 :: State# RealWorld) ->
+      case newByteArray# 0# (s1 `cast` <Co:20>) of { (# ipv, ipv1 #) ->
+      case unsafeFreezeByteArray# ipv1 ipv of { (# ipv2, ipv3 #) ->
+      (# ipv2 `cast` <Co:3>, Vector 0# 0# ipv3 #)
+      }
+      }
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+main3 :: Addr#
+main3 = "consVector"#
+
+-- RHS size: {terms: 3, types: 4, coercions: 0, joins: 0/0}
+lvl3 :: forall s1. Either Bool s1
+lvl3 = \ (@ s1) -> Left False
+
+-- RHS size: {terms: 3, types: 4, coercions: 0, joins: 0/0}
+lvl4 :: forall s1. Either Bool s1
+lvl4 = \ (@ s1) -> Left True
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl5 :: Int
+lvl5 = I# 1#
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule2 :: Addr#
+$trModule2 = "Main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule1 :: TrName
+$trModule1 = TrNameS $trModule2
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule4 :: Addr#
+$trModule4 = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule3 :: TrName
+$trModule3 = TrNameS $trModule4
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$trModule :: Module
+$trModule = Module $trModule3 $trModule1
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl10 :: Addr#
+lvl10 = "Primitive.basicUnsafeNew: negative length: "#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl11 :: Int
+lvl11 = I# 78#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl12 :: Int
+lvl12 = I# 15#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl13 :: Int
+lvl13 = I# 106#
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl14 :: Addr#
+lvl14 = "Primitive.basicUnsafeNew: length to large: "#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl15 :: Int
+lvl15 = I# 79#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl16 :: Int
+lvl16 = I# 16#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl17 :: Int
+lvl17 = I# 107#
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl18 :: Addr#
+lvl18 = "./Data/Vector/Primitive/Mutable.hs"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl19 :: [Char]
+lvl19 = unpackCString# lvl18
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl20 :: Addr#
+lvl20 = "Data.Vector.Primitive.Mutable"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl21 :: [Char]
+lvl21 = unpackCString# lvl20
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl22 :: Addr#
+lvl22 = "vector-0.12.1.2-AWRYcz9jfa25Avs2q9Jg9V"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl23 :: [Char]
+lvl23 = unpackCString# lvl22
+
+-- RHS size: {terms: 8, types: 0, coercions: 0, joins: 0/0}
+lvl24 :: SrcLoc
+lvl24 = SrcLoc lvl23 lvl21 lvl19 lvl17 lvl16 lvl17 lvl15
+
+-- RHS size: {terms: 8, types: 0, coercions: 0, joins: 0/0}
+lvl25 :: SrcLoc
+lvl25 = SrcLoc lvl23 lvl21 lvl19 lvl13 lvl12 lvl13 lvl11
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl26 :: Addr#
+lvl26 = "error"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl27 :: [Char]
+lvl27 = unpackCString# lvl26
+
+-- RHS size: {terms: 4, types: 0, coercions: 0, joins: 0/0}
+lvl28 :: CallStack
+lvl28 = PushCallStack lvl27 lvl24 EmptyCallStack
+
+-- RHS size: {terms: 14, types: 20, coercions: 4, joins: 0/0}
+lvl30
+  :: Int# -> ST RealWorld (MVector (PrimState (ST RealWorld)) Int)
+lvl30
+  = \ (x1 :: Int#) ->
+      error
+        (lvl28 `cast` <Co:4>)
+        (unpackAppendCString#
+           lvl14
+           (case $wshowSignedInt 0# x1 [] of { (# ww5, ww6 #) -> : ww5 ww6 }))
+
+-- RHS size: {terms: 4, types: 0, coercions: 0, joins: 0/0}
+lvl31 :: CallStack
+lvl31 = PushCallStack lvl27 lvl25 EmptyCallStack
+
+-- RHS size: {terms: 14, types: 20, coercions: 4, joins: 0/0}
+lvl33
+  :: Int# -> ST RealWorld (MVector (PrimState (ST RealWorld)) Int)
+lvl33
+  = \ (x1 :: Int#) ->
+      error
+        (lvl31 `cast` <Co:4>)
+        (unpackAppendCString#
+           lvl10
+           (case $wshowSignedInt 0# x1 [] of { (# ww5, ww6 #) -> : ww5 ww6 }))
+
+Rec {
+-- RHS size: {terms: 106, types: 137, coercions: 7, joins: 0/1}
+$wconsVector
+  :: Int#
+     -> Int# -> Int# -> ByteArray# -> (# Int#, Int#, ByteArray# #)
+$wconsVector
+  = \ (ww :: Int#) (ww1 :: Int#) (ww2 :: Int#) (ww3 :: ByteArray#) ->
+      case ww of ds {
+        __DEFAULT ->
+          case runRW#
+                 (\ (s1 :: State# RealWorld) ->
+                    let {
+                      x1 :: Int#
+                      x1 = +# 1# ww2 } in
+                    case <# x1 1# of {
+                      __DEFAULT ->
+                        case <# x1 ww2 of {
+                          __DEFAULT ->
+                            case <# x1 0# of {
+                              __DEFAULT ->
+                                case ># x1 1152921504606846975# of {
+                                  __DEFAULT ->
+                                    case newByteArray# (*# x1 8#) (s1 `cast` <Co:4>) of
+                                    { (# ipv, ipv1 #) ->
+                                    case writeIntArray# ipv1 0# ds ipv of s'# { __DEFAULT ->
+                                    case copyByteArray# ww3 (*# ww1 8#) ipv1 8# (*# ww2 8#) s'#
+                                    of s'#1
+                                    { __DEFAULT ->
+                                    case unsafeFreezeByteArray# ipv1 s'#1 of { (# ipv2, ipv3 #) ->
+                                    (# ipv2 `cast` <Co:3>, Vector 0# (+# 1# ww2) ipv3 #)
+                                    }
+                                    }
+                                    }
+                                    };
+                                  1# -> case lvl30 x1 of wild { }
+                                };
+                              1# -> case lvl33 x1 of wild { }
+                            };
+                          1# -> case $wlvl1 x1 of wild { }
+                        };
+                      1# -> case $wlvl1 x1 of wild { }
+                    })
+          of
+          { (# ipv1, ipv2 #) ->
+          case ipv2 of { Vector ww5 ww6 ww7 ->
+          $wconsVector (-# ds 1#) ww5 ww6 ww7
+          }
+          };
+        0# -> (# ww1, ww2, ww3 #)
+      }
+end Rec }
+
+-- RHS size: {terms: 16, types: 48, coercions: 0, joins: 0/0}
+main2 :: String
+main2
+  = case runRW# main4 of { (# ipv1, ipv2 #) ->
+    case ipv2 of { Vector ww1 ww2 ww3 ->
+    case $wconsVector 7# ww1 ww2 ww3 of { (# ww5, ww6, ww7 #) ->
+    unpackCString# main3
+    }
+    }
+    }
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl34 :: Int
+lvl34 = I# 0#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl35 :: Size
+lvl35 = Exact lvl34
+
+Rec {
+-- RHS size: {terms: 152, types: 226, coercions: 50, joins: 0/12}
+$s$wconsBundle
+  :: Size
+     -> Maybe (Vector Int)
+     -> ((() -> Step () (Chunk Vector Int))
+         ~R# (() -> Id (Step () (Chunk Vector Int))))
+     -> ()
+     -> ((() -> Step () Int) ~R# (() -> Id (Step () Int)))
+     -> ()
+     -> Int#
+     -> (# Stream Id Int, Stream Id (Chunk Vector Int),
+           Maybe (Vector Int), Size #)
+$s$wconsBundle
+  = \ (sc :: Size)
+      (sc1 :: Maybe (Vector Int))
+      (sg
+         :: (() -> Step () (Chunk Vector Int))
+            ~R# (() -> Id (Step () (Chunk Vector Int))))
+      (sc2 :: ())
+      (sg1 :: (() -> Step () Int) ~R# (() -> Id (Step () Int)))
+      (sc3 :: ())
+      (sc4 :: Int#) ->
+      case sc4 of wild {
+        __DEFAULT ->
+          let {
+            wild1 :: Int
+            wild1 = I# wild } in
+          let {
+            lvl36 :: Either Bool ()
+            lvl36 = Right sc3 } in
+          let {
+            lvl37 :: Step (Either Bool ()) Int
+            lvl37 = Skip lvl36 } in
+          let {
+            lvl38 :: forall s1. Step (Either Bool s1) Int
+            lvl38 = \ (@ s1) -> Yield wild1 lvl3 } in
+          let {
+            step :: Either Bool () -> Id (Step (Either Bool ()) Int)
+            step
+              = \ (ds2 :: Either Bool ()) ->
+                  case ds2 of {
+                    Left sa ->
+                      case sa of {
+                        False -> lvl37 `cast` <Co:7>;
+                        True -> lvl38 `cast` <Co:7>
+                      };
+                    Right sb -> Done `cast` <Co:7>
+                  } } in
+          let {
+            lvl39
+              :: forall (m1 :: * -> *).
+                 (PrimMonad m1, Vector Vector Int) =>
+                 Mutable Vector (PrimState m1) Int -> m1 ()
+            lvl39
+              = \ (@ (m1 :: * -> *))
+                  ($dPrimMonad :: PrimMonad m1)
+                  ($dVector :: Vector Vector Int)
+                  (eta :: Mutable Vector (PrimState m1) Int) ->
+                  basicUnsafeWrite
+                    ($p1Vector $dVector) $dPrimMonad eta lvl34 wild1 } in
+          let {
+            lvl40 :: Chunk Vector Int
+            lvl40 = Chunk lvl5 lvl39 } in
+          let {
+            lvl41 :: Either Bool ()
+            lvl41 = Right sc2 } in
+          let {
+            lvl42 :: Step (Either Bool ()) (Chunk Vector Int)
+            lvl42 = Skip lvl41 } in
+          let {
+            step1
+              :: Either Bool () -> Id (Step (Either Bool ()) (Chunk Vector Int))
+            step1
+              = \ (ds2 :: Either Bool ()) ->
+                  case ds2 of {
+                    Left sa ->
+                      case sa of {
+                        False -> lvl42 `cast` <Co:9>;
+                        True -> (Yield lvl40 (Left False)) `cast` <Co:9>
+                      };
+                    Right sb -> Done `cast` <Co:9>
+                  } } in
+          $s$wconsBundle1
+            (case sc of {
+               Exact n ->
+                 case n of { I# y ->
+                 let {
+                   x1 :: Int#
+                   x1 = +# 1# y } in
+                 case <# x1 1# of {
+                   __DEFAULT ->
+                     case <# x1 y of {
+                       __DEFAULT -> Exact (I# x1);
+                       1# -> $wlvl1 x1
+                     };
+                   1# -> $wlvl1 x1
+                 }
+                 };
+               Max n ->
+                 case n of { I# y ->
+                 let {
+                   x1 :: Int#
+                   x1 = +# 1# y } in
+                 case <# x1 1# of {
+                   __DEFAULT ->
+                     case <# x1 y of {
+                       __DEFAULT -> Max (I# x1);
+                       1# -> $wlvl1 x1
+                     };
+                   1# -> $wlvl1 x1
+                 }
+                 };
+               Unknown -> Unknown
+             })
+            Nothing
+            step1
+            lvl4
+            step
+            lvl4
+            (-# wild 1#);
+        0# ->
+          (# Stream (lvl1 `cast` <Co:1>) sc3, Stream (lvl `cast` <Co:1>) sc2,
+             sc1, sc #)
+      }
+
+-- RHS size: {terms: 180, types: 360, coercions: 114, joins: 0/12}
+$s$wconsBundle1
+  :: Size
+     -> Maybe (Vector Int)
+     -> (Either Bool ()
+         -> Id (Step (Either Bool ()) (Chunk Vector Int)))
+     -> Either Bool ()
+     -> (Either Bool () -> Id (Step (Either Bool ()) Int))
+     -> Either Bool ()
+     -> Int#
+     -> (# Stream Id Int, Stream Id (Chunk Vector Int),
+           Maybe (Vector Int), Size #)
+$s$wconsBundle1
+  = \ (sc :: Size)
+      (sc1 :: Maybe (Vector Int))
+      (sc2
+         :: Either Bool () -> Id (Step (Either Bool ()) (Chunk Vector Int)))
+      (sc3 :: Either Bool ())
+      (sc4 :: Either Bool () -> Id (Step (Either Bool ()) Int))
+      (sc5 :: Either Bool ())
+      (sc6 :: Int#) ->
+      case sc6 of wild {
+        __DEFAULT ->
+          let {
+            wild1 :: Int
+            wild1 = I# wild } in
+          $wconsBundle
+            (-# wild 1#)
+            (let {
+               lvl36 :: Either Bool (Either Bool ())
+               lvl36 = Right sc5 } in
+             let {
+               lvl37 :: Step (Either Bool (Either Bool ())) Int
+               lvl37 = Skip lvl36 } in
+             let {
+               lvl38 :: forall s1. Step (Either Bool s1) Int
+               lvl38 = \ (@ s1) -> Yield wild1 lvl3 } in
+             let {
+               step
+                 :: Either Bool (Either Bool ())
+                    -> Id (Step (Either Bool (Either Bool ())) Int)
+               step
+                 = \ (ds2 :: Either Bool (Either Bool ())) ->
+                     case ds2 of {
+                       Left sa ->
+                         case sa of {
+                           False -> lvl37 `cast` <Co:9>;
+                           True -> lvl38 `cast` <Co:9>
+                         };
+                       Right sb ->
+                         case (sc4 sb) `cast` <Co:6> of {
+                           Yield x sb' -> (Yield x (Right sb')) `cast` <Co:9>;
+                           Skip sb' -> (Skip (Right sb')) `cast` <Co:9>;
+                           Done -> Done `cast` <Co:9>
+                         }
+                     } } in
+             Stream step lvl4)
+            (let {
+               lvl36
+                 :: forall (m1 :: * -> *).
+                    (PrimMonad m1, Vector Vector Int) =>
+                    Mutable Vector (PrimState m1) Int -> m1 ()
+               lvl36
+                 = \ (@ (m1 :: * -> *))
+                     ($dPrimMonad :: PrimMonad m1)
+                     ($dVector :: Vector Vector Int)
+                     (eta :: Mutable Vector (PrimState m1) Int) ->
+                     basicUnsafeWrite
+                       ($p1Vector $dVector) $dPrimMonad eta lvl34 wild1 } in
+             let {
+               lvl37 :: Chunk Vector Int
+               lvl37 = Chunk lvl5 lvl36 } in
+             let {
+               lvl38 :: Either Bool (Either Bool ())
+               lvl38 = Right sc3 } in
+             let {
+               lvl39 :: Step (Either Bool (Either Bool ())) (Chunk Vector Int)
+               lvl39 = Skip lvl38 } in
+             let {
+               step
+                 :: Either Bool (Either Bool ())
+                    -> Id (Step (Either Bool (Either Bool ())) (Chunk Vector Int))
+               step
+                 = \ (ds2 :: Either Bool (Either Bool ())) ->
+                     case ds2 of {
+                       Left sa ->
+                         case sa of {
+                           False -> lvl39 `cast` <Co:11>;
+                           True -> (Yield lvl37 (Left False)) `cast` <Co:11>
+                         };
+                       Right sb ->
+                         case (sc2 sb) `cast` <Co:8> of {
+                           Yield x sb' -> (Yield x (Right sb')) `cast` <Co:11>;
+                           Skip sb' -> (Skip (Right sb')) `cast` <Co:11>;
+                           Done -> Done `cast` <Co:11>
+                         }
+                     } } in
+             Stream step lvl4)
+            Nothing
+            (case sc of {
+               Exact n ->
+                 case n of { I# y ->
+                 let {
+                   x1 :: Int#
+                   x1 = +# 1# y } in
+                 case <# x1 1# of {
+                   __DEFAULT ->
+                     case <# x1 y of {
+                       __DEFAULT -> Exact (I# x1);
+                       1# -> $wlvl1 x1
+                     };
+                   1# -> $wlvl1 x1
+                 }
+                 };
+               Max n ->
+                 case n of { I# y ->
+                 let {
+                   x1 :: Int#
+                   x1 = +# 1# y } in
+                 case <# x1 1# of {
+                   __DEFAULT ->
+                     case <# x1 y of {
+                       __DEFAULT -> Max (I# x1);
+                       1# -> $wlvl1 x1
+                     };
+                   1# -> $wlvl1 x1
+                 }
+                 };
+               Unknown -> Unknown
+             });
+        0# -> (# Stream sc4 sc5, Stream sc2 sc3, sc1, sc #)
+      }
+
+-- RHS size: {terms: 180, types: 274, coercions: 90, joins: 0/12}
+$wconsBundle
+  :: Int#
+     -> Stream Id Int
+     -> Stream Id (Chunk Vector Int)
+     -> Maybe (Vector Int)
+     -> Size
+     -> (# Stream Id Int, Stream Id (Chunk Vector Int),
+           Maybe (Vector Int), Size #)
+$wconsBundle
+  = \ (ww :: Int#)
+      (ww1 :: Stream Id Int)
+      (ww2 :: Stream Id (Chunk Vector Int))
+      (ww3 :: Maybe (Vector Int))
+      (ww4 :: Size) ->
+      case ww of wild {
+        __DEFAULT ->
+          let {
+            wild1 :: Int
+            wild1 = I# wild } in
+          $wconsBundle
+            (-# wild 1#)
+            (case ww1 of { Stream @ s1 stepb tb ->
+             let {
+               lvl36 :: Either Bool s1
+               lvl36 = Right tb } in
+             let {
+               lvl37 :: Step (Either Bool s1) Int
+               lvl37 = Skip lvl36 } in
+             let {
+               lvl38 :: forall s2. Step (Either Bool s2) Int
+               lvl38 = \ (@ s2) -> Yield wild1 lvl3 } in
+             let {
+               step :: Either Bool s1 -> Id (Step (Either Bool s1) Int)
+               step
+                 = \ (ds2 :: Either Bool s1) ->
+                     case ds2 of {
+                       Left sa ->
+                         case sa of {
+                           False -> lvl37 `cast` <Co:7>;
+                           True -> lvl38 `cast` <Co:7>
+                         };
+                       Right sb ->
+                         case (stepb sb) `cast` <Co:4> of {
+                           Yield x sb' -> (Yield x (Right sb')) `cast` <Co:7>;
+                           Skip sb' -> (Skip (Right sb')) `cast` <Co:7>;
+                           Done -> Done `cast` <Co:7>
+                         }
+                     } } in
+             Stream step lvl4
+             })
+            (case ww2 of { Stream @ s1 stepb tb ->
+             let {
+               lvl36
+                 :: forall (m1 :: * -> *).
+                    (PrimMonad m1, Vector Vector Int) =>
+                    Mutable Vector (PrimState m1) Int -> m1 ()
+               lvl36
+                 = \ (@ (m1 :: * -> *))
+                     ($dPrimMonad :: PrimMonad m1)
+                     ($dVector :: Vector Vector Int)
+                     (eta :: Mutable Vector (PrimState m1) Int) ->
+                     basicUnsafeWrite
+                       ($p1Vector $dVector) $dPrimMonad eta lvl34 wild1 } in
+             let {
+               lvl37 :: Chunk Vector Int
+               lvl37 = Chunk lvl5 lvl36 } in
+             let {
+               lvl38 :: Either Bool s1
+               lvl38 = Right tb } in
+             let {
+               lvl39 :: Step (Either Bool s1) (Chunk Vector Int)
+               lvl39 = Skip lvl38 } in
+             let {
+               step
+                 :: Either Bool s1 -> Id (Step (Either Bool s1) (Chunk Vector Int))
+               step
+                 = \ (ds2 :: Either Bool s1) ->
+                     case ds2 of {
+                       Left sa ->
+                         case sa of {
+                           False -> lvl39 `cast` <Co:9>;
+                           True -> (Yield lvl37 (Left False)) `cast` <Co:9>
+                         };
+                       Right sb ->
+                         case (stepb sb) `cast` <Co:6> of {
+                           Yield x sb' -> (Yield x (Right sb')) `cast` <Co:9>;
+                           Skip sb' -> (Skip (Right sb')) `cast` <Co:9>;
+                           Done -> Done `cast` <Co:9>
+                         }
+                     } } in
+             Stream step lvl4
+             })
+            Nothing
+            (case ww4 of {
+               Exact n ->
+                 case n of { I# y ->
+                 let {
+                   x1 :: Int#
+                   x1 = +# 1# y } in
+                 case <# x1 1# of {
+                   __DEFAULT ->
+                     case <# x1 y of {
+                       __DEFAULT -> Exact (I# x1);
+                       1# -> $wlvl1 x1
+                     };
+                   1# -> $wlvl1 x1
+                 }
+                 };
+               Max n ->
+                 case n of { I# y ->
+                 let {
+                   x1 :: Int#
+                   x1 = +# 1# y } in
+                 case <# x1 1# of {
+                   __DEFAULT ->
+                     case <# x1 y of {
+                       __DEFAULT -> Max (I# x1);
+                       1# -> $wlvl1 x1
+                     };
+                   1# -> $wlvl1 x1
+                 }
+                 };
+               Unknown -> Unknown
+             });
+        0# -> (# ww1, ww2, ww3, ww4 #)
+      }
+end Rec }
+
+-- RHS size: {terms: 297, types: 469, coercions: 216, joins: 5/8}
+main5 :: String
+main5
+  = case $s$wconsBundle lvl35 Nothing @~ <Co:9> () @~ <Co:7> () 7# of
+    { (# ww1, ww2, ww3, ww4 #) ->
+    case runRW#
+           (\ (s1 :: State# RealWorld) ->
+              case ww1 of { Stream @ s3 step s4 ->
+              case ww2 of { Stream @ s5 vstep t ->
+              join {
+                $w$j :: Int# -> (# State# RealWorld, Vector Int #)
+                $w$j (ww5 :: Int#)
+                  = case <# ww5 0# of {
+                      __DEFAULT ->
+                        case ># ww5 1152921504606846975# of {
+                          __DEFAULT ->
+                            case newByteArray# (*# ww5 8#) (s1 `cast` <Co:4>) of
+                            { (# ipv, ipv1 #) ->
+                            joinrec {
+                              $s$wfoldlM'_loop
+                                :: State# RealWorld
+                                   -> s5 -> Int# -> (# State# RealWorld, Vector Int #)
+                              $s$wfoldlM'_loop (sc :: State# RealWorld) (sc1 :: s5) (sc2 :: Int#)
+                                = case (vstep sc1) `cast` <Co:6> of {
+                                    Yield x s' ->
+                                      case x of { Chunk m1 f1 ->
+                                      case ((f1
+                                               $fPrimMonadST
+                                               $fVectorVectora_$s$fVectorVectora
+                                               (case m1 of { I# dt4 ->
+                                                (MVector sc2 dt4 ipv1) `cast` <Co:7>
+                                                }))
+                                            `cast` <Co:3>)
+                                             sc
+                                      of
+                                      { (# ipv6, ipv7 #) ->
+                                      case m1 of { I# y ->
+                                      jump $s$wfoldlM'_loop ipv6 s' (+# sc2 y)
+                                      }
+                                      }
+                                      };
+                                    Skip s' -> jump $s$wfoldlM'_loop sc s' sc2;
+                                    Done ->
+                                      case unsafeFreezeByteArray# ipv1 (sc `cast` <Co:4>) of
+                                      { (# ipv2, ipv3 #) ->
+                                      (# ipv2 `cast` <Co:3>, Vector 0# sc2 ipv3 #)
+                                      }
+                                  }; } in
+                            jump $s$wfoldlM'_loop (ipv `cast` <Co:22>) t 0#
+                            };
+                          1# -> case lvl30 ww5 of wild { }
+                        };
+                      1# -> case lvl33 ww5 of wild { }
+                    } } in
+              join {
+                $j :: Int -> (# State# RealWorld, Vector Int #)
+                $j (w :: Int) = case w of { I# ww6 -> jump $w$j ww6 } } in
+              case ww4 of {
+                Exact n -> jump $j n;
+                Max n -> jump $j n;
+                Unknown ->
+                  case newByteArray# 0# (s1 `cast` <Co:4>) of { (# ipv, ipv1 #) ->
+                  joinrec {
+                    $s$wfoldlM_loop
+                      :: State# RealWorld
+                         -> s5
+                         -> Int#
+                         -> MutableByteArray# RealWorld
+                         -> Int#
+                         -> Int#
+                         -> (# State# RealWorld, Vector Int #)
+                    $s$wfoldlM_loop (sc :: State# RealWorld)
+                                    (sc1 :: s5)
+                                    (sc2 :: Int#)
+                                    (sc3 :: MutableByteArray# RealWorld)
+                                    (sc4 :: Int#)
+                                    (sc5 :: Int#)
+                      = case (vstep sc1) `cast` <Co:6> of {
+                          Yield x s' ->
+                            case x of { Chunk n f1 ->
+                            case n of { I# y ->
+                            let {
+                              y1 :: Int#
+                              y1 = +# sc2 y } in
+                            case <# sc4 y1 of {
+                              __DEFAULT ->
+                                case ((f1
+                                         $fPrimMonadST
+                                         $fVectorVectora_$s$fVectorVectora
+                                         ((MVector (+# sc5 sc2) y (sc3 `cast` <Co:4>))
+                                          `cast` <Co:7>))
+                                      `cast` <Co:3>)
+                                       sc
+                                of
+                                { (# ipv2, ipv3 #) ->
+                                jump $s$wfoldlM_loop ipv2 s' y1 sc3 sc4 sc5
+                                };
+                              1# ->
+                                join {
+                                  $j1 :: Int# -> (# State# RealWorld, Vector Int #)
+                                  $j1 (x1 :: Int#)
+                                    = case <# x1 0# of {
+                                        __DEFAULT ->
+                                          case ># x1 1152921504606846975# of {
+                                            __DEFAULT ->
+                                              case newByteArray# (*# x1 8#) (sc `cast` <Co:4>) of
+                                              { (# ipv2, ipv3 #) ->
+                                              case copyMutableByteArray#
+                                                     (sc3 `cast` <Co:4>)
+                                                     (*# sc5 8#)
+                                                     ipv3
+                                                     0#
+                                                     (*# sc4 8#)
+                                                     ipv2
+                                              of s'#
+                                              { __DEFAULT ->
+                                              case ((f1
+                                                       $fPrimMonadST
+                                                       $fVectorVectora_$s$fVectorVectora
+                                                       ((MVector sc2 y ipv3) `cast` <Co:7>))
+                                                    `cast` <Co:3>)
+                                                     (s'# `cast` <Co:22>)
+                                              of
+                                              { (# ipv4, ipv5 #) ->
+                                              jump $s$wfoldlM_loop
+                                                ipv4 s' y1 (ipv3 `cast` <Co:27>) x1 0#
+                                              }
+                                              }
+                                              };
+                                            1# -> case lvl30 x1 of wild { }
+                                          };
+                                        1# -> case lvl33 x1 of wild { }
+                                      } } in
+                                case <=# sc4 1# of {
+                                  __DEFAULT ->
+                                    let {
+                                      y2 :: Int#
+                                      y2 = -# y1 sc4 } in
+                                    case <=# sc4 y2 of {
+                                      __DEFAULT -> jump $j1 (*# 2# sc4);
+                                      1# -> jump $j1 (+# sc4 y2)
+                                    };
+                                  1# ->
+                                    let {
+                                      y2 :: Int#
+                                      y2 = -# y1 sc4 } in
+                                    case <=# 1# y2 of {
+                                      __DEFAULT -> jump $j1 (+# sc4 1#);
+                                      1# -> jump $j1 (+# sc4 y2)
+                                    }
+                                }
+                            }
+                            }
+                            };
+                          Skip s' -> jump $s$wfoldlM_loop sc s' sc2 sc3 sc4 sc5;
+                          Done ->
+                            case unsafeFreezeByteArray# (sc3 `cast` <Co:4>) (sc `cast` <Co:4>)
+                            of
+                            { (# ipv2, ipv3 #) ->
+                            (# ipv2 `cast` <Co:3>, Vector sc5 sc2 ipv3 #)
+                            }
+                        }; } in
+                  jump $s$wfoldlM_loop
+                    (ipv `cast` <Co:22>) t 0# (ipv1 `cast` <Co:27>) 0# 0#
+                  }
+              }
+              }
+              })
+    of
+    { (# ipv1, ipv2 #) ->
+    case ipv2 of { Vector ipv ipv4 ipv5 -> unpackCString# lvl2 }
+    }
+    }
+
+-- RHS size: {terms: 13, types: 13, coercions: 4, joins: 0/0}
+main1 :: State# RealWorld -> (# State# RealWorld, () #)
+main1
+  = \ (s :: State# RealWorld) ->
+      case ((hPutStr' stdout main5 True) `cast` <Co:2>) s of
+      { (# ipv, ipv1 #) ->
+      ((hPutStr' stdout main2 True) `cast` <Co:2>) ipv
+      }
+
+-- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
+main :: IO ()
+main = main1 `cast` <Co:3>
+
+-- RHS size: {terms: 2, types: 1, coercions: 3, joins: 0/0}
+main6 :: State# RealWorld -> (# State# RealWorld, () #)
+main6 = runMainIO1 (main1 `cast` <Co:3>)
+
+-- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
+main :: IO ()
+main = main6 `cast` <Co:3>
+

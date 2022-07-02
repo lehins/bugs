@@ -1,0 +1,51 @@
+==================== Tidy Core ====================
+Result size of Tidy Core
+  = {terms: 51, types: 44, coercions: 3, joins: 0/0}
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule4 :: Addr#
+$trModule4 = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule3 :: TrName
+$trModule3 = TrNameS $trModule4
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule2 :: Addr#
+$trModule2 = "Main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule1 :: TrName
+$trModule1 = TrNameS $trModule2
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$trModule :: Module
+$trModule = Module $trModule3 $trModule1
+
+-- RHS size: {terms: 26, types: 23, coercions: 0, joins: 0/0}
+main1 :: String
+main1
+  = case >=# (word2Int# (popCnt64# 12977992773873323784##)) 24# of {
+      __DEFAULT ->
+        case $wshowSignedInt 0# -8957806435396241616# [] of
+        { (# ww5, ww6 #) ->
+        : ww5 ww6
+        };
+      1# ->
+        case $wshowSignedInt 0# -3786866244297152595# [] of
+        { (# ww5, ww6 #) ->
+        : ww5 ww6
+        }
+    }
+
+-- RHS size: {terms: 4, types: 0, coercions: 0, joins: 0/0}
+main :: IO ()
+main = hPutStr' stdout main1 True
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+main2 :: State# RealWorld -> (# State# RealWorld, () #)
+main2 = runMainIO1 main
+
+-- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
+main :: IO ()
+main = main2 `cast` <Co:3>

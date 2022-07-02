@@ -1,0 +1,48 @@
+name:                prim-overflow
+version:             0.1.0.0
+synopsis:            Short description
+description:         Please see the README on GitHub at <https://github.com/lehins/prim-overflow#readme>
+homepage:            https://github.com/lehins/prim-overflow
+license:             BSD3
+license-file:        LICENSE
+author:              Alexey Kuleshevich
+maintainer:          alexey@kuleshevi.ch
+copyright:           2020 Alexey Kuleshevich
+category:            Algorithms
+build-type:          Custom
+extra-source-files:  README.md
+                   , CHANGELOG.md
+cabal-version:       1.18
+tested-with:         GHC == 8.4.3
+                   , GHC == 8.4.4
+                   , GHC == 8.6.3
+                   , GHC == 8.6.4
+                   , GHC == 8.6.5
+                   , GHC == 8.8.1
+                   , GHC == 8.8.2
+                   , GHC == 8.10.1
+custom-setup
+  setup-depends:
+      base
+    , Cabal
+    , cabal-doctest >=1.0.6
+
+
+
+executable prim-overflow
+  main-is: Main.hs
+  other-modules:
+      Paths_prim_overflow
+  hs-source-dirs:     app
+  ghc-options:        -Wall
+                      -Wincomplete-record-updates
+                      -Wincomplete-uni-patterns
+                      -Wredundant-constraints
+                      -O2
+                      -threaded
+                      -rtsopts
+                      -with-rtsopts=-N
+  build-depends:      base
+                    , primitive
+  default-language: Haskell2010
+

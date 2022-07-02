@@ -1,0 +1,34 @@
+name:                head
+version:             0.1.0.0
+synopsis:            Short description
+description:         Please see the README on GitHub at <https://github.com/lehins/head#readme>
+homepage:            https://github.com/lehins/head
+license:             BSD3
+license-file:        LICENSE
+author:              Alexey Kuleshevich
+maintainer:          alexey@kuleshevi.ch
+copyright:           2021 Alexey Kuleshevich
+category:            Algorithms
+build-type:          Simple
+extra-source-files:  README.md
+                   , CHANGELOG.md
+cabal-version:       1.18
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Head
+
+  other-modules:
+  build-depends:       base >= 4.8 && < 5
+                     , QuickCheck
+
+  default-language:    Haskell2010
+  ghc-options:         -Wall
+                       -Wincomplete-record-updates
+                       -Wincomplete-uni-patterns
+                       -Wredundant-constraints
+
+
+source-repository head
+  type:     git
+  location: https://github.com/lehins/bugs
