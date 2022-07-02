@@ -41,3 +41,34 @@ tuples =
     AmIRight,
     True
   )
+
+
+foo :: Num a => (a, a, a) -> a
+foo ( x
+    , y
+    , z
+    ) = x + y + z
+
+
+bar :: Num a => [a] -> a
+bar [ x
+    , y
+    , z
+    ] = x + y + z
+
+
+baz :: Num a => [a] -> a
+baz xs =
+  case xs of
+    Foo [ x
+        , y
+        , z
+        ] -> x + y + z
+    _ -> 0
+
+bar :: Num a => [a] -> a
+bar [ x
+    , y
+    , z
+    ] = x + y + z
+bar _ = 0
