@@ -1,0 +1,1136 @@
+
+==================== Tidy Core ====================
+2022-08-06 21:31:55.830191421 UTC
+
+Result size of Tidy Core
+  = {terms: 1,229, types: 1,256, coercions: 170, joins: 5/21}
+
+-- RHS size: {terms: 3, types: 4, coercions: 2, joins: 0/0}
+$p1Ledger :: forall e. Ledger e => Ord (Currency e)
+$p1Ledger = \ (@e) (v :: Ledger e) -> v `cast` <Co:2>
+
+-- RHS size: {terms: 6, types: 16, coercions: 0, joins: 0/0}
+$p1From :: forall a. From a => Monoid (Share a)
+$p1From = \ (@a) (v :: From a) -> case v of v { C:From v v -> v }
+
+-- RHS size: {terms: 6, types: 16, coercions: 0, joins: 0/0}
+decoderWithShare
+  :: forall a. From a => Share a -> Decoder (Share a, a)
+decoderWithShare
+  = \ (@a) (v :: From a) -> case v of v { C:From v v -> v }
+
+-- RHS size: {terms: 3, types: 4, coercions: 2, joins: 0/0}
+encoder :: forall a. To a => a -> Encoder
+encoder = \ (@a) (v :: To a) -> v `cast` <Co:2>
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$fShowMyTx1 :: Int
+$fShowMyTx1 = I# 0#
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl5 :: Addr#
+lvl5 = "error"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl6 :: [Char]
+lvl6 = unpackCString# lvl5
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl7 :: Addr#
+lvl7 = "containers-0.6.4.1"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl8 :: [Char]
+lvl8 = unpackCString# lvl7
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl9 :: Addr#
+lvl9 = "Data.Set.Internal"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl10 :: [Char]
+lvl10 = unpackCString# lvl9
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl11 :: Addr#
+lvl11 = "libraries/containers/containers/src/Data/Set/Internal.hs"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl12 :: [Char]
+lvl12 = unpackCString# lvl11
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl13 :: Int
+lvl13 = I# 1335#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl14 :: Int
+lvl14 = I# 21#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl15 :: Int
+lvl15 = I# 69#
+
+-- RHS size: {terms: 8, types: 0, coercions: 0, joins: 0/0}
+lvl16 :: SrcLoc
+lvl16 = SrcLoc lvl8 lvl10 lvl12 lvl13 lvl14 lvl13 lvl15
+
+-- RHS size: {terms: 4, types: 0, coercions: 0, joins: 0/0}
+lvl17 :: CallStack
+lvl17 = PushCallStack lvl6 lvl16 EmptyCallStack
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl18 :: Addr#
+lvl18 = "Set.findIndex: element is not in the set"#
+
+-- RHS size: {terms: 4, types: 2, coercions: 4, joins: 0/0}
+lvl19 :: Int
+lvl19 = error (lvl17 `cast` <Co:4>) (unpackCString# lvl18)
+
+Rec {
+-- RHS size: {terms: 46, types: 44, coercions: 0, joins: 0/0}
+$w$sgo5 :: Int# -> [Char] -> Set [Char] -> Int#
+$w$sgo5
+  = \ (ww :: Int#) (w :: [Char]) (w1 :: Set [Char]) ->
+      case w1 of {
+        Bin ipv1 ipv2 ipv3 ipv4 ->
+          case $fOrd[]_$s$ccompare1 w ipv2 of {
+            LT -> $w$sgo5 ww w ipv3;
+            EQ ->
+              case ipv3 of {
+                Bin dt ds5 ds6 ds7 -> +# ww dt;
+                Tip -> ww
+              };
+            GT ->
+              case ipv3 of {
+                Bin dt ds5 ds6 ds7 -> $w$sgo5 (+# (+# ww dt) 1#) w ipv4;
+                Tip -> $w$sgo5 (+# ww 1#) w ipv4
+              }
+          };
+        Tip -> case lvl19 of wild1 { }
+      }
+end Rec }
+
+-- RHS size: {terms: 5, types: 11, coercions: 0, joins: 0/0}
+main14 :: P (Integer, [Char])
+main14
+  = $fRead(,)1 $fReadInteger $fRead[]_$s$fRead[]1 minPrec readEither7
+
+-- RHS size: {terms: 4, types: 6, coercions: 20, joins: 0/0}
+$fLedgerMyLedger
+  :: forall c. (Read c, Ord c) => Ledger (MyLedger c)
+$fLedgerMyLedger
+  = (\ (@c) _ ($dOrd :: Ord c) -> $dOrd) `cast` <Co:20>
+
+-- RHS size: {terms: 10, types: 4, coercions: 0, joins: 0/0}
+$fFromMyTx4 :: Char -> Bool
+$fFromMyTx4
+  = \ (ds3 :: Char) ->
+      case ds3 of { C# x ->
+      case x of {
+        __DEFAULT -> True;
+        ')'# -> False
+      }
+      }
+
+-- RHS size: {terms: 3, types: 11, coercions: 0, joins: 0/0}
+$fFromMyTx5 :: forall {c}. Either [Char] (String, (Set c, MyTx c))
+$fFromMyTx5 = \ (@c) -> Left readEither5
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$fFromMyTx3 :: Addr#
+$fFromMyTx3 = "Malformed input: "#
+
+-- RHS size: {terms: 3, types: 11, coercions: 0, joins: 0/0}
+$fFromMyTx2 :: forall {c}. Either [Char] (String, (Set c, MyTx c))
+$fFromMyTx2 = \ (@c) -> Left readEither2
+
+-- RHS size: {terms: 112, types: 170, coercions: 15, joins: 3/4}
+$fFromMyTx1
+  :: forall {c}.
+     (Read c, Ord c) =>
+     Share (MyTx c) -> String -> Either Error (String, (Set c, MyTx c))
+$fFromMyTx1
+  = \ (@c)
+      ($dRead :: Read c)
+      ($dOrd :: Ord c)
+      (s :: Share (MyTx c))
+      (str :: String) ->
+      case readEither8
+             (run ($fRead(,)1 $fReadInteger $dRead minPrec readEither7) str)
+      of {
+        [] -> $fFromMyTx5;
+        : x ds3 ->
+          case ds3 of {
+            [] ->
+              case x of { (a, c1) ->
+              case $wspan $fFromMyTx4 str of { (# ww1, ww2 #) ->
+              case ww2 of {
+                [] -> Left (unpackAppendCString# $fFromMyTx3 str);
+                : ds4 rest ->
+                  case ds4 of { C# ds5 ->
+                  case ds5 of {
+                    __DEFAULT -> Left (unpackAppendCString# $fFromMyTx3 str);
+                    ')'# ->
+                      let {
+                        ds7 :: (c, Set c)
+                        ds7
+                          = join {
+                              $j :: (c, Set c)
+                              $j = (c1, insert $dOrd c1 (s `cast` <Co:3>)) } in
+                            join {
+                              $j1 :: (c, Set c)
+                              $j1
+                                = (case findIndex $dOrd c1 (s `cast` <Co:3>) of { I# ww5 ->
+                                   $welemAt ww5 (s `cast` <Co:3>)
+                                   },
+                                   s `cast` <Co:3>) } in
+                            joinrec {
+                              go5 :: c -> Set c -> (c, Set c)
+                              go5 (ds8 :: c) (ds9 :: Set c)
+                                = case ds8 of ds10 { __DEFAULT ->
+                                  case ds9 of {
+                                    Bin ipv ipv1 ipv2 ipv3 ->
+                                      case compare $dOrd ds10 ipv1 of {
+                                        LT -> jump go5 ds10 ipv2;
+                                        EQ -> jump $j1;
+                                        GT -> jump go5 ds10 ipv3
+                                      };
+                                    Tip -> jump $j
+                                  }
+                                  }; } in
+                            jump go5 c1 (s `cast` <Co:3>) } in
+                      Right
+                        (rest,
+                         (case ds7 of { (c', s') -> s' },
+                          MyTx a (case ds7 of { (c', s') -> c' })))
+                  }
+                  }
+              }
+              }
+              };
+            : ipv ipv1 -> $fFromMyTx2
+          }
+      }
+
+-- RHS size: {terms: 9, types: 10, coercions: 17, joins: 0/0}
+$fFromMyTx :: forall c. (Read c, Ord c) => From (MyTx c)
+$fFromMyTx
+  = \ (@c) ($dRead :: Read c) ($dOrd :: Ord c) ->
+      C:From
+        (($fMonoidSet $dOrd) `cast` <Co:4>)
+        (($fFromMyTx1 $dRead $dOrd) `cast` <Co:13>)
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcMyTx2 :: Addr#
+$tcMyTx2 = "MyTx"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lexeme12 :: [Char]
+lexeme12 = unpackCString# $tcMyTx2
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lexeme1 :: Addr#
+lexeme1 = "{"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lexeme2 :: [Char]
+lexeme2 = unpackCString# lexeme1
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+ds :: Addr#
+ds = "amount"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+ds1 :: [Char]
+ds1 = unpackCString# ds
+
+-- RHS size: {terms: 7, types: 7, coercions: 0, joins: 0/0}
+ds2 :: Prec -> forall {b}. (Integer -> P b) -> P b
+ds2
+  = \ _ (@b) (eta1 :: Integer -> P b) ->
+      $fReadInteger_$sreadNumber $fReadInteger2 minPrec eta1
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+n :: Prec
+n = I# 11#
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl20 :: Addr#
+lvl20 = ","#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl21 :: [Char]
+lvl21 = unpackCString# lvl20
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl22 :: Addr#
+lvl22 = "currency"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl23 :: [Char]
+lvl23 = unpackCString# lvl22
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$fShowMyTx2 :: Addr#
+$fShowMyTx2 = "}"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl24 :: [Char]
+lvl24 = unpackCString# $fShowMyTx2
+
+-- RHS size: {terms: 150, types: 130, coercions: 31, joins: 0/14}
+$fReadMyTx1
+  :: forall {c}. Read c => Prec -> forall b. (MyTx c -> P b) -> P b
+$fReadMyTx1
+  = \ (@c)
+      ($dRead :: Read c)
+      (eta :: Prec)
+      (@b)
+      (eta1 :: MyTx c -> P b) ->
+      let {
+        lvl40 :: Prec -> ReadP c
+        lvl40 = \ _ -> ((readPrec $dRead) `cast` <Co:2>) minPrec } in
+      $fRead()7
+        ((\ (c1 :: Prec) (@b1) (eta2 :: MyTx c -> P b1) ->
+            case c1 of { I# x ->
+            case <=# x 11# of {
+              __DEFAULT -> Fail;
+              1# ->
+                let {
+                  lvl127 :: P b1
+                  lvl127
+                    = let {
+                        lvl41 :: P b1
+                        lvl41
+                          = let {
+                              lvl128 :: P b1
+                              lvl128
+                                = case $wreadField
+                                         ds1
+                                         (ds2 `cast` <Co:14>)
+                                         n
+                                         (\ (a1 :: Integer) ->
+                                            let {
+                                              lvl42 :: P b1
+                                              lvl42
+                                                = let {
+                                                    lvl43 :: P b1
+                                                    lvl43
+                                                      = case $wreadField
+                                                               lvl23
+                                                               (lvl40 `cast` <Co:3>)
+                                                               n
+                                                               (\ (a2 :: c) ->
+                                                                  let {
+                                                                    lvl44 :: P b1
+                                                                    lvl44
+                                                                      = let {
+                                                                          lvl45 :: P b1
+                                                                          lvl45
+                                                                            = eta2 (MyTx a1 a2) } in
+                                                                        expect2
+                                                                          (\ (a3 :: Lexeme) ->
+                                                                             case a3 of {
+                                                                               __DEFAULT -> Fail;
+                                                                               Punc a4 ->
+                                                                                 case eqString
+                                                                                        a4 lvl24
+                                                                                 of {
+                                                                                   False -> Fail;
+                                                                                   True -> lvl45
+                                                                                 }
+                                                                             }) } in
+                                                                  let {
+                                                                    k :: () -> P b1
+                                                                    k = \ _ -> lvl44 } in
+                                                                  Look
+                                                                    (\ (a :: String) ->
+                                                                       skipSpaces2 a k))
+                                                        of
+                                                        { (# ww1 #) ->
+                                                        Look ww1
+                                                        } } in
+                                                  expect2
+                                                    (\ (a2 :: Lexeme) ->
+                                                       case a2 of {
+                                                         __DEFAULT -> Fail;
+                                                         Punc a3 ->
+                                                           case eqString a3 lvl21 of {
+                                                             False -> Fail;
+                                                             True -> lvl43
+                                                           }
+                                                       }) } in
+                                            let {
+                                              k :: () -> P b1
+                                              k = \ _ -> lvl42 } in
+                                            Look (\ (a :: String) -> skipSpaces2 a k))
+                                  of
+                                  { (# ww1 #) ->
+                                  Look ww1
+                                  } } in
+                            expect2
+                              (\ (a1 :: Lexeme) ->
+                                 case a1 of {
+                                   __DEFAULT -> Fail;
+                                   Punc a2 ->
+                                     case eqString a2 lexeme2 of {
+                                       False -> Fail;
+                                       True -> lvl128
+                                     }
+                                 }) } in
+                      let {
+                        k :: () -> P b1
+                        k = \ _ -> lvl41 } in
+                      let {
+                        lvl128 :: String -> P b1
+                        lvl128 = \ (a :: String) -> skipSpaces2 a k } in
+                      let {
+                        lvl42 :: P b1
+                        lvl42 = Look lvl128 } in
+                      expect2
+                        (\ (a1 :: Lexeme) ->
+                           case a1 of {
+                             __DEFAULT -> Fail;
+                             Ident a2 ->
+                               case eqString a2 lexeme12 of {
+                                 False -> Fail;
+                                 True -> lvl42
+                               }
+                           }) } in
+                let {
+                  k :: () -> P b1
+                  k = \ _ -> lvl127 } in
+                Look (\ (a :: String) -> skipSpaces2 a k)
+            }
+            })
+         `cast` <Co:12>)
+        eta
+        eta1
+
+-- RHS size: {terms: 8, types: 12, coercions: 0, joins: 0/0}
+$fReadMyTx_$creadsPrec :: forall c. Read c => Int -> ReadS (MyTx c)
+$fReadMyTx_$creadsPrec
+  = \ (@c) ($dRead :: Read c) (eta :: Int) ->
+      run ($fReadMyTx1 $dRead eta $fApplicativeP_$cpure)
+
+-- RHS size: {terms: 5, types: 7, coercions: 12, joins: 0/0}
+$fReadMyTx_$creadListPrec :: forall c. Read c => ReadPrec [MyTx c]
+$fReadMyTx_$creadListPrec
+  = \ (@c) ($dRead :: Read c) ->
+      list (($fReadMyTx1 $dRead) `cast` <Co:12>)
+
+-- RHS size: {terms: 8, types: 16, coercions: 20, joins: 0/0}
+$fReadMyTx_$creadList :: forall c. Read c => ReadS [MyTx c]
+$fReadMyTx_$creadList
+  = \ (@c) ($dRead :: Read c) ->
+      run
+        (((((list (($fReadMyTx1 $dRead) `cast` <Co:12>)) `cast` <Co:4>)
+             $fRead()9)
+          `cast` <Co:4>)
+           $fApplicativeP_$cpure)
+
+-- RHS size: {terms: 11, types: 10, coercions: 12, joins: 0/0}
+$fReadMyTx :: forall c. Read c => Read (MyTx c)
+$fReadMyTx
+  = \ (@c) ($dRead :: Read c) ->
+      C:Read
+        ($fReadMyTx_$creadsPrec $dRead)
+        ($fReadMyTx_$creadList $dRead)
+        (($fReadMyTx1 $dRead) `cast` <Co:12>)
+        ($fReadMyTx_$creadListPrec $dRead)
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$fShowMyTx5 :: Addr#
+$fShowMyTx5 = "MyTx {"#
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$fShowMyTx4 :: Addr#
+$fShowMyTx4 = "amount = "#
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$fShowMyTx3 :: Addr#
+$fShowMyTx3 = "currency = "#
+
+-- RHS size: {terms: 64, types: 34, coercions: 0, joins: 0/0}
+$w$s$cshowsPrec :: Int# -> Integer -> [Char] -> String -> String
+$w$s$cshowsPrec
+  = \ (ww :: Int#) (ww1 :: Integer) (ww2 :: [Char]) (w :: String) ->
+      case >=# ww 11# of {
+        __DEFAULT ->
+          unpackAppendCString#
+            $fShowMyTx5
+            (unpackAppendCString#
+               $fShowMyTx4
+               (case $w$cshowsPrec3
+                       0#
+                       ww1
+                       (++
+                          showCommaSpace1
+                          (unpackAppendCString#
+                             $fShowMyTx3
+                             (: $fShow(,)3
+                                (showLitString
+                                   ww2 (: $fShow(,)3 (unpackAppendCString# $fShowMyTx2 w))))))
+                of
+                { (# ww4, ww5 #) ->
+                : ww4 ww5
+                }));
+        1# ->
+          : $fShow(,)4
+            (unpackAppendCString#
+               $fShowMyTx5
+               (unpackAppendCString#
+                  $fShowMyTx4
+                  (case $w$cshowsPrec3
+                          0#
+                          ww1
+                          (++
+                             showCommaSpace1
+                             (unpackAppendCString#
+                                $fShowMyTx3
+                                (: $fShow(,)3
+                                   (showLitString
+                                      ww2
+                                      (: $fShow(,)3
+                                         (unpackAppendCString# $fShowMyTx2 (: $fShow(,)2 w)))))))
+                   of
+                   { (# ww4, ww5 #) ->
+                   : ww4 ww5
+                   })))
+      }
+
+-- RHS size: {terms: 62, types: 37, coercions: 0, joins: 0/1}
+$w$cshowsPrec
+  :: forall {c}. Show c => Int# -> Integer -> c -> ShowS
+$w$cshowsPrec
+  = \ (@c) (w :: Show c) (ww :: Int#) (ww1 :: Integer) (ww2 :: c) ->
+      let {
+        f :: String -> String
+        f = showsPrec w $fShowMyTx1 ww2 } in
+      case >=# ww 11# of {
+        __DEFAULT ->
+          \ (x :: String) ->
+            unpackAppendCString#
+              $fShowMyTx5
+              (unpackAppendCString#
+                 $fShowMyTx4
+                 (case $w$cshowsPrec3
+                         0#
+                         ww1
+                         (++
+                            showCommaSpace1
+                            (unpackAppendCString#
+                               $fShowMyTx3 (f (unpackAppendCString# $fShowMyTx2 x))))
+                  of
+                  { (# ww4, ww5 #) ->
+                  : ww4 ww5
+                  }));
+        1# ->
+          \ (x :: String) ->
+            : $fShow(,)4
+              (unpackAppendCString#
+                 $fShowMyTx5
+                 (unpackAppendCString#
+                    $fShowMyTx4
+                    (case $w$cshowsPrec3
+                            0#
+                            ww1
+                            (++
+                               showCommaSpace1
+                               (unpackAppendCString#
+                                  $fShowMyTx3
+                                  (f (unpackAppendCString# $fShowMyTx2 (: $fShow(,)2 x)))))
+                     of
+                     { (# ww4, ww5 #) ->
+                     : ww4 ww5
+                     })))
+      }
+
+-- RHS size: {terms: 15, types: 14, coercions: 0, joins: 0/0}
+$fShowMyTx_$cshowsPrec
+  :: forall c. Show c => Int -> MyTx c -> ShowS
+$fShowMyTx_$cshowsPrec
+  = \ (@c) (w :: Show c) (w1 :: Int) (w2 :: MyTx c) ->
+      case w1 of { I# ww1 ->
+      case w2 of { MyTx ww3 ww4 -> $w$cshowsPrec w ww1 ww3 ww4 }
+      }
+
+-- RHS size: {terms: 12, types: 12, coercions: 0, joins: 0/0}
+$fShowMyTx_$cshow :: forall c. Show c => MyTx c -> String
+$fShowMyTx_$cshow
+  = \ (@c) ($dShow :: Show c) (x :: MyTx c) ->
+      case x of { MyTx ww1 ww2 -> $w$cshowsPrec $dShow 0# ww1 ww2 [] }
+
+-- RHS size: {terms: 16, types: 17, coercions: 0, joins: 0/0}
+$fShowMyTx_$cshowList :: forall c. Show c => [MyTx c] -> ShowS
+$fShowMyTx_$cshowList
+  = \ (@c) ($dShow :: Show c) (ls :: [MyTx c]) (s :: String) ->
+      showList__
+        (\ (w :: MyTx c) ->
+           case w of { MyTx ww1 ww2 -> $w$cshowsPrec $dShow 0# ww1 ww2 })
+        ls
+        s
+
+-- RHS size: {terms: 9, types: 9, coercions: 0, joins: 0/0}
+$fShowMyTx :: forall c. Show c => Show (MyTx c)
+$fShowMyTx
+  = \ (@c) ($dShow :: Show c) ->
+      C:Show
+        ($fShowMyTx_$cshowsPrec $dShow)
+        ($fShowMyTx_$cshow $dShow)
+        ($fShowMyTx_$cshowList $dShow)
+
+-- RHS size: {terms: 6, types: 8, coercions: 0, joins: 0/0}
+currency :: forall c. MyTx c -> c
+currency
+  = \ (@c) (ds3 :: MyTx c) -> case ds3 of { MyTx ds4 ds5 -> ds5 }
+
+-- RHS size: {terms: 6, types: 8, coercions: 0, joins: 0/0}
+amount :: forall c. MyTx c -> Integer
+amount
+  = \ (@c) (ds3 :: MyTx c) -> case ds3 of { MyTx ds4 ds5 -> ds4 }
+
+-- RHS size: {terms: 28, types: 30, coercions: 0, joins: 0/0}
+$w$cencoder
+  :: forall {c}. Show c => MyTx c -> String -> (# Char, [Char] #)
+$w$cencoder
+  = \ (@c) (w :: Show c) (w1 :: MyTx c) (w2 :: String) ->
+      (# $fShow(,)4,
+         case w1 of { MyTx ds3 ds4 ->
+         case $w$cshowsPrec3
+                0#
+                ds3
+                (: showList__1
+                   ($fShow(,)_$sgo1
+                      (: $fShow(,)2 w2) (showsPrec w $fShow(,)1 ds4) []))
+         of
+         { (# ww3, ww4 #) ->
+         : ww3 ww4
+         }
+         } #)
+
+-- RHS size: {terms: 13, types: 18, coercions: 0, joins: 0/0}
+$fToMyTx1 :: forall {c}. Show c => MyTx c -> String -> String
+$fToMyTx1
+  = \ (@c) (w :: Show c) (w1 :: MyTx c) (w2 :: String) ->
+      case $w$cencoder w w1 w2 of { (# ww1, ww2 #) -> : ww1 ww2 }
+
+-- RHS size: {terms: 1, types: 0, coercions: 18, joins: 0/0}
+$fToMyTx :: forall c. Show c => To (MyTx c)
+$fToMyTx = $fToMyTx1 `cast` <Co:18>
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule4 :: Addr#
+$trModule4 = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule3 :: TrName
+$trModule3 = TrNameS $trModule4
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule2 :: Addr#
+$trModule2 = "Main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule1 :: TrName
+$trModule1 = TrNameS $trModule2
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$trModule :: Module
+$trModule = Module $trModule3 $trModule1
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep :: KindRep
+$krep = KindRepTyConApp $tcChar []
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep1 :: KindRep
+$krep1 = KindRepTyConApp $tcConstraint []
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep2 :: KindRep
+$krep2 = KindRepTyConApp $tcInteger []
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep3 :: [KindRep]
+$krep3 = : $krep []
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep4 :: KindRep
+$krep4 = KindRepTyConApp $tc[] $krep3
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep5 :: KindRep
+$krep5 = KindRepFun $krep4 $krep4
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$tcFrom1 :: KindRep
+$tcFrom1 = KindRepFun krep$* $krep1
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$krep6 :: KindRep
+$krep6 = KindRepVar 0#
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep7 :: [KindRep]
+$krep7 = : $krep6 []
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep8 :: [KindRep]
+$krep8 = : $krep4 $krep7
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep9 :: KindRep
+$krep9 = KindRepTyConApp $tc(,) $krep8
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep10 :: [KindRep]
+$krep10 = : $krep9 []
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep11 :: [KindRep]
+$krep11 = : $krep4 $krep10
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep12 :: KindRep
+$krep12 = KindRepTyConApp $tcEither $krep11
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep13 :: KindRep
+$krep13 = KindRepFun $krep4 $krep12
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcEncoder2 :: Addr#
+$tcEncoder2 = "Encoder"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcEncoder1 :: TrName
+$tcEncoder1 = TrNameS $tcEncoder2
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcEncoder :: TyCon
+$tcEncoder
+  = TyCon
+      160114362047763830##
+      6678536959182150129##
+      $trModule
+      $tcEncoder1
+      0#
+      krep$*
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep14 :: KindRep
+$krep14 = KindRepTyConApp $tcEncoder []
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep15 :: KindRep
+$krep15 = KindRepFun $krep6 $krep14
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$tc'Encoder1 :: KindRep
+$tc'Encoder1 = KindRepFun $krep5 $krep14
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'Encoder3 :: Addr#
+$tc'Encoder3 = "'Encoder"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'Encoder2 :: TrName
+$tc'Encoder2 = TrNameS $tc'Encoder3
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tc'Encoder :: TyCon
+$tc'Encoder
+  = TyCon
+      4451223165699604945##
+      13689698657090924059##
+      $trModule
+      $tc'Encoder2
+      0#
+      $tc'Encoder1
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcTo2 :: Addr#
+$tcTo2 = "To"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcTo1 :: TrName
+$tcTo1 = TrNameS $tcTo2
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcTo :: TyCon
+$tcTo
+  = TyCon
+      12273566066852042829##
+      5419137004909006028##
+      $trModule
+      $tcTo1
+      0#
+      $tcFrom1
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep16 :: KindRep
+$krep16 = KindRepTyConApp $tcTo $krep7
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$tc'C:To1 :: KindRep
+$tc'C:To1 = KindRepFun $krep15 $krep16
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'C:To3 :: Addr#
+$tc'C:To3 = "'C:To"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'C:To2 :: TrName
+$tc'C:To2 = TrNameS $tc'C:To3
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tc'C:To :: TyCon
+$tc'C:To
+  = TyCon
+      16910915773500158988##
+      3067806490468324860##
+      $trModule
+      $tc'C:To2
+      1#
+      $tc'C:To1
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcDecoder2 :: Addr#
+$tcDecoder2 = "Decoder"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcDecoder1 :: TrName
+$tcDecoder1 = TrNameS $tcDecoder2
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcDecoder :: TyCon
+$tcDecoder
+  = TyCon
+      10826797033630653515##
+      9131182563151517788##
+      $trModule
+      $tcDecoder1
+      0#
+      krep$*Arr*
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep17 :: KindRep
+$krep17 = KindRepTyConApp $tcDecoder $krep7
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$tc'Decoder1 :: KindRep
+$tc'Decoder1 = KindRepFun $krep13 $krep17
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'Decoder3 :: Addr#
+$tc'Decoder3 = "'Decoder"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'Decoder2 :: TrName
+$tc'Decoder2 = TrNameS $tc'Decoder3
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tc'Decoder :: TyCon
+$tc'Decoder
+  = TyCon
+      18213267884574969043##
+      459102894664079475##
+      $trModule
+      $tc'Decoder2
+      1#
+      $tc'Decoder1
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcFrom3 :: Addr#
+$tcFrom3 = "From"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcFrom2 :: TrName
+$tcFrom2 = TrNameS $tcFrom3
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcFrom :: TyCon
+$tcFrom
+  = TyCon
+      11439164760044864578##
+      16802341171490259107##
+      $trModule
+      $tcFrom2
+      0#
+      $tcFrom1
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcLedger2 :: Addr#
+$tcLedger2 = "Ledger"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcLedger1 :: TrName
+$tcLedger1 = TrNameS $tcLedger2
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcLedger :: TyCon
+$tcLedger
+  = TyCon
+      12164773410510886087##
+      252498163441645542##
+      $trModule
+      $tcLedger1
+      0#
+      $tcFrom1
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcMyLedger2 :: Addr#
+$tcMyLedger2 = "MyLedger"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcMyLedger1 :: TrName
+$tcMyLedger1 = TrNameS $tcMyLedger2
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcMyLedger :: TyCon
+$tcMyLedger
+  = TyCon
+      14466839644250976655##
+      11649056633961230856##
+      $trModule
+      $tcMyLedger1
+      0#
+      krep$*Arr*
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcMyTx1 :: TrName
+$tcMyTx1 = TrNameS $tcMyTx2
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcMyTx :: TyCon
+$tcMyTx
+  = TyCon
+      7227813229161089981##
+      14350719407462351887##
+      $trModule
+      $tcMyTx1
+      0#
+      krep$*Arr*
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep18 :: KindRep
+$krep18 = KindRepTyConApp $tcMyTx $krep7
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep19 :: KindRep
+$krep19 = KindRepFun $krep6 $krep18
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$tc'MyTx1 :: KindRep
+$tc'MyTx1 = KindRepFun $krep2 $krep19
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'MyTx3 :: Addr#
+$tc'MyTx3 = "'MyTx"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'MyTx2 :: TrName
+$tc'MyTx2 = TrNameS $tc'MyTx3
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tc'MyTx :: TyCon
+$tc'MyTx
+  = TyCon
+      7919874331898548986##
+      15454714138397324072##
+      $trModule
+      $tc'MyTx2
+      1#
+      $tc'MyTx1
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl25 :: [Char]
+lvl25 = unpackCString# $trModule4
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl26 :: [Char]
+lvl26 = unpackCString# $trModule2
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl27 :: Addr#
+lvl27 = "noloop.hs"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl28 :: [Char]
+lvl28 = unpackCString# lvl27
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl29 :: Int
+lvl29 = I# 35#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl30 :: Int
+lvl30 = I# 30#
+
+-- RHS size: {terms: 8, types: 0, coercions: 0, joins: 0/0}
+lvl31 :: SrcLoc
+lvl31 = SrcLoc lvl25 lvl26 lvl28 lvl29 lvl14 lvl29 lvl30
+
+-- RHS size: {terms: 4, types: 0, coercions: 0, joins: 0/0}
+lvl32 :: CallStack
+lvl32 = PushCallStack lvl6 lvl31 EmptyCallStack
+
+-- RHS size: {terms: 4, types: 4, coercions: 4, joins: 0/0}
+lvl33 :: Error -> MyTx String
+lvl33 = \ (msg :: Error) -> error (lvl32 `cast` <Co:4>) msg
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl34 :: Int
+lvl34 = I# 37#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl35 :: Int
+lvl35 = I# 32#
+
+-- RHS size: {terms: 8, types: 0, coercions: 0, joins: 0/0}
+lvl36 :: SrcLoc
+lvl36 = SrcLoc lvl25 lvl26 lvl28 lvl34 lvl35 lvl34 lvl34
+
+-- RHS size: {terms: 4, types: 0, coercions: 0, joins: 0/0}
+lvl37 :: CallStack
+lvl37 = PushCallStack lvl6 lvl36 EmptyCallStack
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+lvl38 :: Addr#
+lvl38 = "Leftover input: "#
+
+-- RHS size: {terms: 6, types: 5, coercions: 4, joins: 0/0}
+main4 :: [Char] -> MyTx String
+main4
+  = \ (ds3 :: [Char]) ->
+      error (lvl37 `cast` <Co:4>) (unpackAppendCString# lvl38 ds3)
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+main13 :: Integer
+main13 = 5
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+main12 :: [Char]
+main12 = : $fShow(,)2 []
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+main11 :: Addr#
+main11 = "USD"#
+
+-- RHS size: {terms: 9, types: 3, coercions: 0, joins: 0/0}
+main10 :: String -> [Char]
+main10
+  = \ (eta :: String) ->
+      : $fShow(,)3
+        (showLitString (unpackCString# main11) (: $fShow(,)3 eta))
+
+-- RHS size: {terms: 4, types: 1, coercions: 0, joins: 0/0}
+main9 :: String
+main9 = $fShow(,)_$sgo1 main12 main10 []
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+main8 :: [Char]
+main8 = : showList__1 main9
+
+-- RHS size: {terms: 9, types: 10, coercions: 0, joins: 0/0}
+main7 :: [Char]
+main7
+  = case $w$cshowsPrec3 0# main13 main8 of { (# ww3, ww4 #) ->
+    : ww3 ww4
+    }
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+main_str :: String
+main_str = : $fShow(,)4 main7
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+main6 :: MyTx String
+main6 = lvl33 readEither5
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+lvl39 :: [Char]
+lvl39 = unpackAppendCString# $fFromMyTx3 main_str
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+main5 :: MyTx String
+main5 = lvl33 lvl39
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+main3 :: MyTx String
+main3 = lvl33 readEither2
+
+-- RHS size: {terms: 87, types: 117, coercions: 0, joins: 2/2}
+main2 :: String
+main2
+  = case readEither8 (run main14 main_str) of {
+      [] -> case main6 of wild1 { };
+      : x ds3 ->
+        case ds3 of {
+          [] ->
+            case x of { (a, c) ->
+            case $wspan $fFromMyTx4 main_str of { (# ww1, ww2 #) ->
+            case ww2 of {
+              [] -> case main5 of wild4 { };
+              : ds4 rest ->
+                case ds4 of { C# ds5 ->
+                case ds5 of {
+                  __DEFAULT -> case main5 of wild5 { };
+                  ')'# ->
+                    case rest of wild5 {
+                      [] ->
+                        $w$s$cshowsPrec
+                          0#
+                          a
+                          (join {
+                             $j :: [Char]
+                             $j
+                               = case $w$sgo5 0# c Tip of ww4 { __DEFAULT ->
+                                 $welemAt ww4 Tip
+                                 } } in
+                           joinrec {
+                             go5 :: [Char] -> Set [Char] -> [Char]
+                             go5 (ds7 :: [Char]) (ds8 :: Set [Char])
+                               = case ds7 of ds9 { __DEFAULT ->
+                                 case ds8 of {
+                                   Bin ipv ipv1 ipv2 ipv3 ->
+                                     case $fOrd[]_$s$ccompare1 ds9 ipv1 of {
+                                       LT -> jump go5 ds9 ipv2;
+                                       EQ -> jump $j;
+                                       GT -> jump go5 ds9 ipv3
+                                     };
+                                   Tip -> c
+                                 }
+                                 }; } in
+                           jump go5 c Tip)
+                          [];
+                      : ipv ipv1 -> case main4 wild5 of wild6 { }
+                    }
+                }
+                }
+            }
+            }
+            };
+          : ipv ipv1 -> case main3 of wild2 { }
+        }
+    }
+
+-- RHS size: {terms: 6, types: 2, coercions: 0, joins: 0/0}
+main1 :: State# RealWorld -> (# State# RealWorld, () #)
+main1
+  = \ (eta :: State# RealWorld) -> hPutStr2 stdout main2 True eta
+
+-- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
+main :: IO ()
+main = main1 `cast` <Co:3>
+
+-- RHS size: {terms: 2, types: 1, coercions: 3, joins: 0/0}
+main15 :: State# RealWorld -> (# State# RealWorld, () #)
+main15 = runMainIO1 (main1 `cast` <Co:3>)
+
+-- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
+main :: IO ()
+main = main15 `cast` <Co:3>
+
+

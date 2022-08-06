@@ -1,0 +1,413 @@
+
+==================== Tidy Core ====================
+2022-08-06 22:18:58.047088091 UTC
+
+Result size of Tidy Core
+  = {terms: 406, types: 492, coercions: 50, joins: 0/4}
+
+-- RHS size: {terms: 6, types: 12, coercions: 0, joins: 0/0}
+$p1Ledger :: forall e. Ledger e => Ord (Currency e)
+$p1Ledger
+  = \ (@e) (v :: Ledger e) -> case v of v { C:Ledger v v -> v }
+
+-- RHS size: {terms: 6, types: 12, coercions: 0, joins: 0/0}
+$p2Ledger :: forall e. Ledger e => From (Tx e)
+$p2Ledger
+  = \ (@e) (v :: Ledger e) -> case v of v { C:Ledger v v -> v }
+
+-- RHS size: {terms: 6, types: 13, coercions: 0, joins: 0/0}
+$p1From :: forall a. From a => Monoid (Share a)
+$p1From = \ (@a) (v :: From a) -> case v of v { C:From v v -> v }
+
+-- RHS size: {terms: 6, types: 13, coercions: 0, joins: 0/0}
+decoderWithShare :: forall a. From a => Share a -> Decoder a
+decoderWithShare
+  = \ (@a) (v :: From a) -> case v of v { C:From v v -> v }
+
+-- RHS size: {terms: 29, types: 44, coercions: 21, joins: 0/3}
+$cdecoderWithShare
+  :: forall c.
+     (Read c, Ledger (MyLedger c)) =>
+     Share (MyTx c) -> Decoder (MyTx c)
+$cdecoderWithShare
+  = \ (@c)
+      ($dRead1 :: Read c)
+      ($dLedger1 :: Ledger (MyLedger c))
+      (eta :: Share (MyTx c)) ->
+      let {
+        $dEq :: Ord (Currency (MyLedger c))
+        $dEq = $p1Ledger $dLedger1 } in
+      let {
+        $dEq1 :: Eq (Currency (MyLedger c))
+        $dEq1 = $p1Ord $dEq } in
+      $ ((\ (ds :: String -> MyTx c) -> ds) `cast` <Co:9>)
+        (\ (str :: String) ->
+           let {
+             c1 :: c
+             c1 = read $dRead1 str } in
+           $ ((\ (ds :: c) -> ds) `cast` <Co:6>)
+             (case elem
+                     $fFoldable[] ($dEq1 `cast` <Co:3>) c1 (eta `cast` <Co:3>)
+              of
+              { __DEFAULT ->
+              c1
+              }))
+
+-- RHS size: {terms: 6, types: 12, coercions: 0, joins: 0/0}
+$cp1From
+  :: forall {c}.
+     (Read c, Ledger (MyLedger c)) =>
+     Monoid (Share (Tx (MyLedger c)))
+$cp1From
+  = \ (@c) _ ($dLedger1 :: Ledger (MyLedger c)) ->
+      $p1From ($p2Ledger $dLedger1)
+
+-- RHS size: {terms: 10, types: 11, coercions: 4, joins: 0/0}
+$fFromMyTx
+  :: forall c. (Read c, Ledger (MyLedger c)) => From (MyTx c)
+$fFromMyTx
+  = \ (@c) ($dRead1 :: Read c) ($dLedger1 :: Ledger (MyLedger c)) ->
+      C:From
+        (($cp1From $dRead1 $dLedger1) `cast` <Co:4>)
+        ($cdecoderWithShare $dRead1 $dLedger1)
+
+Rec {
+-- RHS size: {terms: 8, types: 9, coercions: 8, joins: 0/0}
+$fLedgerMyLedger
+  :: forall c. (Read c, Ord c) => Ledger (MyLedger c)
+$fLedgerMyLedger
+  = \ (@c) ($dRead1 :: Read c) ($dOrd1 :: Ord c) ->
+      C:Ledger
+        ($dOrd1 `cast` <Co:4>) (($cp2Ledger $dRead1 $dOrd1) `cast` <Co:4>)
+
+-- RHS size: {terms: 8, types: 8, coercions: 0, joins: 0/0}
+$cp2Ledger :: forall {c}. (Read c, Ord c) => From (MyTx c)
+$cp2Ledger
+  = \ (@c) ($dRead1 :: Read c) ($dOrd1 :: Ord c) ->
+      $fFromMyTx $dRead1 ($fLedgerMyLedger $dRead1 $dOrd1)
+end Rec }
+
+-- RHS size: {terms: 36, types: 31, coercions: 3, joins: 0/0}
+$creadPrec :: forall c. Read c => ReadPrec (MyTx c)
+$creadPrec
+  = \ (@c) ($dRead1 :: Read c) ->
+      parens
+        (prec
+           (I# 11#)
+           (>>
+              $fMonadReadPrec
+              (expectP (Ident (unpackCString# "MyTx"#)))
+              (>>
+                 $fMonadReadPrec
+                 (expectP (Punc (unpackCString# "{"#)))
+                 (>>=
+                    $fMonadReadPrec
+                    (readField (unpackCString# "currency"#) (reset (readPrec $dRead1)))
+                    (\ (a1 :: c) ->
+                       >>
+                         $fMonadReadPrec
+                         (expectP (Punc (unpackCString# "}"#)))
+                         (return $fMonadReadPrec (a1 `cast` <Co:3>)))))))
+
+Rec {
+-- RHS size: {terms: 11, types: 10, coercions: 0, joins: 0/0}
+$fReadMyTx :: forall c. Read c => Read (MyTx c)
+$fReadMyTx
+  = \ (@c) ($dRead1 :: Read c) ->
+      C:Read
+        ($creadsPrec $dRead1)
+        ($creadList $dRead1)
+        ($creadPrec $dRead1)
+        ($creadListPrec $dRead1)
+
+-- RHS size: {terms: 5, types: 7, coercions: 0, joins: 0/0}
+$creadListPrec :: forall c. Read c => ReadPrec [MyTx c]
+$creadListPrec
+  = \ (@c) ($dRead1 :: Read c) ->
+      readListPrecDefault ($fReadMyTx $dRead1)
+
+-- RHS size: {terms: 5, types: 7, coercions: 0, joins: 0/0}
+$creadList :: forall c. Read c => ReadS [MyTx c]
+$creadList
+  = \ (@c) ($dRead1 :: Read c) ->
+      readListDefault ($fReadMyTx $dRead1)
+
+-- RHS size: {terms: 5, types: 7, coercions: 0, joins: 0/0}
+$creadsPrec :: forall c. Read c => Int -> ReadS (MyTx c)
+$creadsPrec
+  = \ (@c) ($dRead1 :: Read c) -> $dmreadsPrec ($fReadMyTx $dRead1)
+end Rec }
+
+-- RHS size: {terms: 27, types: 18, coercions: 2, joins: 0/0}
+$cshowsPrec :: forall c. Show c => Int -> MyTx c -> ShowS
+$cshowsPrec
+  = \ (@c) ($dShow1 :: Show c) (a :: Int) (ds :: MyTx c) ->
+      showParen
+        (>= $fOrdInt a (I# 11#))
+        (. (showString (unpackCString# "MyTx {"#))
+           (. (showString (unpackCString# "currency = "#))
+              (. (showsPrec $dShow1 (I# 0#) (ds `cast` <Co:2>))
+                 (showString (unpackCString# "}"#)))))
+
+Rec {
+-- RHS size: {terms: 9, types: 9, coercions: 0, joins: 0/0}
+$fShowMyTx :: forall c. Show c => Show (MyTx c)
+$fShowMyTx
+  = \ (@c) ($dShow1 :: Show c) ->
+      C:Show ($cshowsPrec $dShow1) ($cshow $dShow1) ($cshowList $dShow1)
+
+-- RHS size: {terms: 5, types: 7, coercions: 0, joins: 0/0}
+$cshowList :: forall c. Show c => [MyTx c] -> ShowS
+$cshowList
+  = \ (@c) ($dShow1 :: Show c) -> $dmshowList ($fShowMyTx $dShow1)
+
+-- RHS size: {terms: 5, types: 7, coercions: 0, joins: 0/0}
+$cshow :: forall c. Show c => MyTx c -> String
+$cshow = \ (@c) ($dShow1 :: Show c) -> $dmshow ($fShowMyTx $dShow1)
+end Rec }
+
+-- RHS size: {terms: 3, types: 4, coercions: 0, joins: 0/0}
+currency1 :: forall {c}. MyTx c -> MyTx c
+currency1 = \ (@c) (ds :: MyTx c) -> ds
+
+-- RHS size: {terms: 1, types: 0, coercions: 9, joins: 0/0}
+currency :: forall c. MyTx c -> c
+currency = currency1 `cast` <Co:9>
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule1 :: Addr#
+$trModule1 = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule2 :: TrName
+$trModule2 = TrNameS $trModule1
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule3 :: Addr#
+$trModule3 = "Main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule4 :: TrName
+$trModule4 = TrNameS $trModule3
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$trModule :: Module
+$trModule = Module $trModule2 $trModule4
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep :: KindRep
+$krep = KindRepTyConApp $tcChar []
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep1 :: KindRep
+$krep1 = KindRepTyConApp $tcConstraint []
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep2 :: [KindRep]
+$krep2 = : $krep []
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep3 :: KindRep
+$krep3 = KindRepTyConApp $tc[] $krep2
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep4 :: KindRep
+$krep4 = KindRepFun krep$* $krep1
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$krep5 :: KindRep
+$krep5 = KindRepVar 0#
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep6 :: KindRep
+$krep6 = KindRepFun $krep3 $krep5
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcDecoder1 :: Addr#
+$tcDecoder1 = "Decoder"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcDecoder2 :: TrName
+$tcDecoder2 = TrNameS $tcDecoder1
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcDecoder :: TyCon
+$tcDecoder
+  = TyCon
+      10826797033630653515##
+      9131182563151517788##
+      $trModule
+      $tcDecoder2
+      0#
+      krep$*Arr*
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep7 :: [KindRep]
+$krep7 = : $krep5 []
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep8 :: KindRep
+$krep8 = KindRepTyConApp $tcDecoder $krep7
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep9 :: KindRep
+$krep9 = KindRepFun $krep6 $krep8
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'Decoder1 :: Addr#
+$tc'Decoder1 = "'Decoder"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'Decoder2 :: TrName
+$tc'Decoder2 = TrNameS $tc'Decoder1
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tc'Decoder :: TyCon
+$tc'Decoder
+  = TyCon
+      18213267884574969043##
+      459102894664079475##
+      $trModule
+      $tc'Decoder2
+      1#
+      $krep9
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcFrom1 :: Addr#
+$tcFrom1 = "From"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcFrom2 :: TrName
+$tcFrom2 = TrNameS $tcFrom1
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcFrom :: TyCon
+$tcFrom
+  = TyCon
+      11439164760044864578##
+      16802341171490259107##
+      $trModule
+      $tcFrom2
+      0#
+      $krep4
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcLedger1 :: Addr#
+$tcLedger1 = "Ledger"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcLedger2 :: TrName
+$tcLedger2 = TrNameS $tcLedger1
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcLedger :: TyCon
+$tcLedger
+  = TyCon
+      12164773410510886087##
+      252498163441645542##
+      $trModule
+      $tcLedger2
+      0#
+      $krep4
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcMyLedger1 :: Addr#
+$tcMyLedger1 = "MyLedger"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcMyLedger2 :: TrName
+$tcMyLedger2 = TrNameS $tcMyLedger1
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcMyLedger :: TyCon
+$tcMyLedger
+  = TyCon
+      14466839644250976655##
+      11649056633961230856##
+      $trModule
+      $tcMyLedger2
+      0#
+      krep$*Arr*
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcMyTx1 :: Addr#
+$tcMyTx1 = "MyTx"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcMyTx2 :: TrName
+$tcMyTx2 = TrNameS $tcMyTx1
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tcMyTx :: TyCon
+$tcMyTx
+  = TyCon
+      7227813229161089981##
+      14350719407462351887##
+      $trModule
+      $tcMyTx2
+      0#
+      krep$*Arr*
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep10 :: [KindRep]
+$krep10 = : $krep5 []
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep11 :: KindRep
+$krep11 = KindRepTyConApp $tcMyTx $krep10
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep12 :: KindRep
+$krep12 = KindRepFun $krep5 $krep11
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'MyTx1 :: Addr#
+$tc'MyTx1 = "'MyTx"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'MyTx2 :: TrName
+$tc'MyTx2 = TrNameS $tc'MyTx1
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+$tc'MyTx :: TyCon
+$tc'MyTx
+  = TyCon
+      7919874331898548986##
+      15454714138397324072##
+      $trModule
+      $tc'MyTx2
+      1#
+      $krep12
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$dOrd :: Ord [Char]
+$dOrd = $fOrd[] $fOrdChar
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$dRead :: Read [Char]
+$dRead = $fRead[] $fReadChar
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$dLedger :: Ledger (MyLedger [Char])
+$dLedger = $fLedgerMyLedger $dRead $dOrd
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$dShow :: Show [Char]
+$dShow = $fShow[] $fShowChar
+
+-- RHS size: {terms: 16, types: 17, coercions: 3, joins: 0/1}
+main :: IO ()
+main
+  = print
+      ($fShowMyTx $dShow)
+      (let {
+         $dFrom :: From (MyTx String)
+         $dFrom = $fFromMyTx $dRead $dLedger } in
+       ((decoderWithShare $dFrom (mempty ($p1From $dFrom))) `cast` <Co:3>)
+         (show $dShow (unpackCString# "USD"#)))
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+main :: IO ()
+main = runMainIO main
+
+

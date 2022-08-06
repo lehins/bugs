@@ -1,0 +1,1103 @@
+[1 of 1] Compiling Main             ( loop.hs, loop.o )
+
+==================== Tidy Core ====================
+Result size of Tidy Core
+  = {terms: 749, types: 934, coercions: 119, joins: 1/13}
+
+-- RHS size: {terms: 6, types: 20, coercions: 0, joins: 0/0}
+Main.$p1Ledger :: forall e. Ledger e => Ord (Currency e)
+[GblId[ClassOp],
+ Arity=1,
+ Caf=NoCafRefs,
+ Str=<S(SLL),U(U,A,A)>,
+ RULES: Built in rule for Main.$p1Ledger: "Class op $p1Ledger"]
+Main.$p1Ledger
+  = \ (@e_aBJ) (v_B1 :: Ledger e_aBJ) ->
+      case v_B1 of v_B1 { Main.C:Ledger v_B2 v_B3 v_B4 -> v_B2 }
+
+-- RHS size: {terms: 6, types: 20, coercions: 0, joins: 0/0}
+Main.$p2Ledger :: forall e. Ledger e => From (Tx e)
+[GblId[ClassOp],
+ Arity=1,
+ Caf=NoCafRefs,
+ Str=<S(LSL),U(A,U,A)>,
+ RULES: Built in rule for Main.$p2Ledger: "Class op $p2Ledger"]
+Main.$p2Ledger
+  = \ (@e_aBJ) (v_B1 :: Ledger e_aBJ) ->
+      case v_B1 of v_B1 { Main.C:Ledger v_B2 v_B3 v_B4 -> v_B3 }
+
+-- RHS size: {terms: 6, types: 20, coercions: 0, joins: 0/0}
+Main.$p3Ledger
+  :: forall e. Ledger e => Share (Tx e) ~ Set (Currency e)
+[GblId[ClassOp],
+ Arity=1,
+ Caf=NoCafRefs,
+ Str=<S(LLS),U(A,A,U)>,
+ RULES: Built in rule for Main.$p3Ledger: "Class op $p3Ledger"]
+Main.$p3Ledger
+  = \ (@e_aBJ) (v_B1 :: Ledger e_aBJ) ->
+      case v_B1 of v_B1 { Main.C:Ledger v_B2 v_B3 v_B4 -> v_B4 }
+
+-- RHS size: {terms: 6, types: 16, coercions: 0, joins: 0/0}
+Main.$p1From :: forall a. From a => Monoid (Share a)
+[GblId[ClassOp],
+ Arity=1,
+ Caf=NoCafRefs,
+ Str=<S(SL),U(U,A)>,
+ RULES: Built in rule for Main.$p1From: "Class op $p1From"]
+Main.$p1From
+  = \ (@a_a1DV) (v_B1 :: From a_a1DV) ->
+      case v_B1 of v_B1 { Main.C:From v_B2 v_B3 -> v_B2 }
+
+-- RHS size: {terms: 6, types: 16, coercions: 0, joins: 0/0}
+decoderWithShare
+  :: forall a. From a => Share a -> Decoder (Share a, a)
+[GblId[ClassOp],
+ Arity=1,
+ Caf=NoCafRefs,
+ Str=<S(LS),U(A,U)>,
+ RULES: Built in rule for decoderWithShare: "Class op decoderWithShare"]
+decoderWithShare
+  = \ (@a_a1DV) (v_B1 :: From a_a1DV) ->
+      case v_B1 of v_B1 { Main.C:From v_B2 v_B3 -> v_B3 }
+
+-- RHS size: {terms: 3, types: 4, coercions: 2, joins: 0/0}
+encoder [InlPrag=INLINE] :: forall a. To a => a -> Encoder
+[GblId[ClassOp],
+ Arity=1,
+ Caf=NoCafRefs,
+ Str=<S,U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=1,unsat_ok=False,boring_ok=True)
+         Tmpl= \ (@a_a1DW) (v_B1 [Occ=Once1] :: To a_a1DW) ->
+                 v_B1
+                 `cast` (Main.N:To[0] <a_a1DW>_N
+                         :: To a_a1DW ~R# (a_a1DW -> Encoder))}]
+encoder
+  = \ (@a_a1DW) (v_B1 :: To a_a1DW) ->
+      v_B1
+      `cast` (Main.N:To[0] <a_a1DW>_N
+              :: To a_a1DW ~R# (a_a1DW -> Encoder))
+
+-- RHS size: {terms: 97, types: 182, coercions: 56, joins: 1/5}
+$cdecoderWithShare_r2zi
+  :: forall c.
+     (Read c, Ledger (MyLedger c)) =>
+     Share (MyTx c) -> Decoder (Share (MyTx c), MyTx c)
+[GblId, Arity=2, Unf=OtherCon []]
+$cdecoderWithShare_r2zi
+  = \ (@c_a2vh)
+      ($dRead1_a2vi :: Read c_a2vh)
+      ($dLedger1_a2vj :: Ledger (MyLedger c_a2vh)) ->
+      let {
+        $dRead2_a2vB :: Read (Integer, c_a2vh)
+        [LclId]
+        $dRead2_a2vB
+          = GHC.Read.$fRead(,)
+              @Integer @c_a2vh GHC.Read.$fReadInteger $dRead1_a2vi } in
+      let {
+        $dOrd1_a2xP :: Ord (Currency (MyLedger c_a2vh))
+        [LclId]
+        $dOrd1_a2xP = Main.$p1Ledger @(MyLedger c_a2vh) $dLedger1_a2vj } in
+      (\ (s_a1F8 :: Share (MyTx c_a2vh)) ->
+         $ @'GHC.Types.LiftedRep
+           @(String -> Either Error (String, (Set c_a2vh, MyTx c_a2vh)))
+           @(Decoder (Set c_a2vh, MyTx c_a2vh))
+           ((\ (ds_d2Bp
+                  :: String -> Either Error (String, (Set c_a2vh, MyTx c_a2vh))) ->
+               ds_d2Bp)
+            `cast` (<String
+                     -> Either Error (String, (Set c_a2vh, MyTx c_a2vh))>_R
+                    %<'Many>_N ->_R Sym (Main.N:Decoder[0]
+                                             <(Set c_a2vh, MyTx c_a2vh)>_R)
+                    :: ((String -> Either Error (String, (Set c_a2vh, MyTx c_a2vh)))
+                        -> String -> Either Error (String, (Set c_a2vh, MyTx c_a2vh)))
+                       ~R# ((String -> Either Error (String, (Set c_a2vh, MyTx c_a2vh)))
+                            -> Decoder (Set c_a2vh, MyTx c_a2vh))))
+           (\ (str_a1F9 :: String) ->
+              >>=
+                @(Either Error)
+                (Data.Either.$fMonadEither @[Char])
+                @(Integer, c_a2vh)
+                @(String, (Set c_a2vh, MyTx c_a2vh))
+                (readEither @(Integer, c_a2vh) $dRead2_a2vB str_a1F9)
+                (\ (ds_d2DW :: (Integer, c_a2vh)) ->
+                   case ds_d2DW of { (a_a1Fa, c1_a1Fb) ->
+                   join {
+                     fail_d2DU
+                       :: GHC.Prim.Void#
+                          -> Either Error (String, (Set c_a2vh, MyTx c_a2vh))
+                     [LclId[JoinId(1)], Arity=1, Str=<L,U>, Unf=OtherCon []]
+                     fail_d2DU _ [Occ=Dead, OS=OneShot]
+                       = $ @'GHC.Types.LiftedRep
+                           @[Char]
+                           @(Either [Char] (String, (Set c_a2vh, MyTx c_a2vh)))
+                           (\ (ds2_d2DN :: [Char]) ->
+                              Data.Either.Left
+                                @[Char] @(String, (Set c_a2vh, MyTx c_a2vh)) ds2_d2DN)
+                           (++
+                              @Char
+                              (GHC.CString.unpackCString# "Malformed input: "#)
+                              str_a1F9) } in
+                   case span
+                          @Char
+                          (let {
+                             ds1_d2Br :: Char
+                             [LclId, Unf=OtherCon []]
+                             ds1_d2Br = GHC.Types.C# ')'# } in
+                           \ (ds2_d2Bq :: Char) ->
+                             /= @Char GHC.Classes.$fEqChar ds2_d2Bq ds1_d2Br)
+                          str_a1F9
+                   of
+                   { (ds1_d2DO, ds2_d2DP) ->
+                   case ds2_d2DP of {
+                     [] -> jump fail_d2DU GHC.Prim.void#;
+                     : ds3_d2DQ rest_a1GH ->
+                       case ds3_d2DQ of { GHC.Types.C# ds4_d2DR ->
+                       case ds4_d2DR of {
+                         __DEFAULT -> jump fail_d2DU GHC.Prim.void#;
+                         ')'# ->
+                           let {
+                             ds6_d2DM :: (c_a2vh, Set c_a2vh)
+                             [LclId]
+                             ds6_d2DM
+                               = case Set.member
+                                        @c_a2vh
+                                        ($dOrd1_a2xP
+                                         `cast` ((Ord (Main.D:R:CurrencyMyLedger[0] <c_a2vh>_N))_R
+                                                 :: Ord (Currency (MyLedger c_a2vh))
+                                                    ~R# Ord c_a2vh))
+                                        c1_a1Fb
+                                        (s_a1F8
+                                         `cast` (Sub (Main.D:R:ShareMyTx[0] <c_a2vh>_N)
+                                                 :: Share (MyTx c_a2vh) ~R# Set c_a2vh))
+                                 of {
+                                   False ->
+                                     (c1_a1Fb,
+                                      Set.insert
+                                        @c_a2vh
+                                        ($dOrd1_a2xP
+                                         `cast` ((Ord (Main.D:R:CurrencyMyLedger[0] <c_a2vh>_N))_R
+                                                 :: Ord (Currency (MyLedger c_a2vh))
+                                                    ~R# Ord c_a2vh))
+                                        c1_a1Fb
+                                        (s_a1F8
+                                         `cast` (Sub (Main.D:R:ShareMyTx[0] <c_a2vh>_N)
+                                                 :: Share (MyTx c_a2vh) ~R# Set c_a2vh)));
+                                   True ->
+                                     (Set.elemAt
+                                        @c_a2vh
+                                        (Set.findIndex
+                                           @c_a2vh
+                                           ($dOrd1_a2xP
+                                            `cast` ((Ord
+                                                       (Main.D:R:CurrencyMyLedger[0] <c_a2vh>_N))_R
+                                                    :: Ord (Currency (MyLedger c_a2vh))
+                                                       ~R# Ord c_a2vh))
+                                           c1_a1Fb
+                                           (s_a1F8
+                                            `cast` (Sub (Main.D:R:ShareMyTx[0] <c_a2vh>_N)
+                                                    :: Share (MyTx c_a2vh) ~R# Set c_a2vh)))
+                                        (s_a1F8
+                                         `cast` (Sub (Main.D:R:ShareMyTx[0] <c_a2vh>_N)
+                                                 :: Share (MyTx c_a2vh) ~R# Set c_a2vh)),
+                                      s_a1F8
+                                      `cast` (Sub (Main.D:R:ShareMyTx[0] <c_a2vh>_N)
+                                              :: Share (MyTx c_a2vh) ~R# Set c_a2vh))
+                                 } } in
+                           Data.Either.Right
+                             @Error
+                             @([Char], (Set c_a2vh, MyTx c_a2vh))
+                             (rest_a1GH,
+                              (case ds6_d2DM of { (c'_a1GI, s'_a1GJ) -> s'_a1GJ },
+                               Main.MyTx
+                                 @c_a2vh
+                                 a_a1Fa
+                                 (case ds6_d2DM of { (c'_a1GI, s'_a1GJ) -> c'_a1GI })))
+                       }
+                       }
+                   }
+                   }
+                   })))
+      `cast` (<Share (MyTx c_a2vh)>_R
+              %<'Many>_N ->_R (Decoder
+                                 ((,)
+                                    (Sub (Sym (Main.D:R:ShareMyTx[0] <c_a2vh>_N)))
+                                    <MyTx c_a2vh>_R)_R)_R
+              :: (Share (MyTx c_a2vh) -> Decoder (Set c_a2vh, MyTx c_a2vh))
+                 ~R# (Share (MyTx c_a2vh)
+                      -> Decoder (Share (MyTx c_a2vh), MyTx c_a2vh)))
+
+-- RHS size: {terms: 6, types: 12, coercions: 0, joins: 0/0}
+$cp1From_r2FI
+  :: forall {c}.
+     (Read c, Ledger (MyLedger c)) =>
+     Monoid (Share (Tx (MyLedger c)))
+[GblId, Arity=2, Unf=OtherCon []]
+$cp1From_r2FI
+  = \ (@c_a2vh)
+      _ [Occ=Dead]
+      ($dLedger1_a2vj :: Ledger (MyLedger c_a2vh)) ->
+      Main.$p1From
+        @(Tx (MyLedger c_a2vh))
+        (Main.$p2Ledger @(MyLedger c_a2vh) $dLedger1_a2vj)
+
+-- RHS size: {terms: 10, types: 11, coercions: 4, joins: 0/0}
+Main.$fFromMyTx [InlPrag=NOUSERINLINE CONLIKE]
+  :: forall c. (Read c, Ledger (MyLedger c)) => From (MyTx c)
+[GblId[DFunId], Arity=2]
+Main.$fFromMyTx
+  = \ (@c_X1H)
+      ($dRead1_X1I :: Read c_X1H)
+      ($dLedger1_X1J :: Ledger (MyLedger c_X1H)) ->
+      Main.C:From
+        @(MyTx c_X1H)
+        (($cp1From_r2FI @c_X1H $dRead1_X1I $dLedger1_X1J)
+         `cast` ((Monoid (Share (Main.D:R:TxMyLedger[0] <c_X1H>_N))_N)_R
+                 :: Monoid (Share (Tx (MyLedger c_X1H)))
+                    ~R# Monoid (Share (MyTx c_X1H))))
+        ($cdecoderWithShare_r2zi @c_X1H $dRead1_X1I $dLedger1_X1J)
+
+Rec {
+-- RHS size: {terms: 9, types: 14, coercions: 25, joins: 0/0}
+Main.$fLedgerMyLedger [InlPrag=NOUSERINLINE CONLIKE]
+  :: forall c. (Read c, Ord c) => Ledger (MyLedger c)
+[GblId[DFunId], Arity=2]
+Main.$fLedgerMyLedger
+  = \ (@c_X1H)
+      ($dRead1_X1I :: Read c_X1H)
+      ($dOrd1_X1J :: Ord c_X1H) ->
+      Main.C:Ledger
+        @(MyLedger c_X1H)
+        ($dOrd1_X1J
+         `cast` ((Ord (Sym (Main.D:R:CurrencyMyLedger[0] <c_X1H>_N)))_R
+                 :: Ord c_X1H ~R# Ord (Currency (MyLedger c_X1H))))
+        (($cp2Ledger_r2FJ @c_X1H $dRead1_X1I $dOrd1_X1J)
+         `cast` ((From (Sym (Main.D:R:TxMyLedger[0] <c_X1H>_N)))_R
+                 :: From (MyTx c_X1H) ~R# From (Tx (MyLedger c_X1H))))
+        ((GHC.Types.Eq#
+            @(*)
+            @(Set c_X1H)
+            @(Set c_X1H)
+            @~(<Set c_X1H>_N :: Set c_X1H GHC.Prim.~# Set c_X1H))
+         `cast` (((~)
+                    <*>_N
+                    (Sym (Main.D:R:ShareMyTx[0] <c_X1H>_N) ; (Share
+                                                                (Sym (Main.D:R:TxMyLedger[0]
+                                                                          <c_X1H>_N)))_N)
+                    (Set (Sym (Main.D:R:CurrencyMyLedger[0] <c_X1H>_N)))_N)_R
+                 :: (Set c_X1H ~ Set c_X1H)
+                    ~R# (Share (Tx (MyLedger c_X1H))
+                         ~ Set (Currency (MyLedger c_X1H)))))
+
+-- RHS size: {terms: 8, types: 8, coercions: 0, joins: 0/0}
+$cp2Ledger_r2FJ :: forall {c}. (Read c, Ord c) => From (MyTx c)
+[GblId, Arity=2, Unf=OtherCon []]
+$cp2Ledger_r2FJ
+  = \ (@c_X1H)
+      ($dRead1_X1I :: Read c_X1H)
+      ($dOrd1_X1J :: Ord c_X1H) ->
+      Main.$fFromMyTx
+        @c_X1H
+        $dRead1_X1I
+        (Main.$fLedgerMyLedger @c_X1H $dRead1_X1I $dOrd1_X1J)
+end Rec }
+
+-- RHS size: {terms: 53, types: 44, coercions: 0, joins: 0/0}
+$creadPrec_r2FK
+  :: forall c.
+     Read c =>
+     Text.ParserCombinators.ReadPrec.ReadPrec (MyTx c)
+[GblId, Arity=1, Unf=OtherCon []]
+$creadPrec_r2FK
+  = \ (@c_a2qK) ($dRead1_a2qL :: Read c_a2qK) ->
+      GHC.Read.parens
+        @(MyTx c_a2qK)
+        (Text.ParserCombinators.ReadPrec.prec
+           @(MyTx c_a2qK)
+           (GHC.Types.I# 11#)
+           (>>
+              @Text.ParserCombinators.ReadPrec.ReadPrec
+              Text.ParserCombinators.ReadPrec.$fMonadReadPrec
+              @()
+              @(MyTx c_a2qK)
+              (GHC.Read.expectP
+                 (Text.Read.Lex.Ident (GHC.CString.unpackCString# "MyTx"#)))
+              (>>
+                 @Text.ParserCombinators.ReadPrec.ReadPrec
+                 Text.ParserCombinators.ReadPrec.$fMonadReadPrec
+                 @()
+                 @(MyTx c_a2qK)
+                 (GHC.Read.expectP
+                    (Text.Read.Lex.Punc (GHC.CString.unpackCString# "{"#)))
+                 (>>=
+                    @Text.ParserCombinators.ReadPrec.ReadPrec
+                    Text.ParserCombinators.ReadPrec.$fMonadReadPrec
+                    @Integer
+                    @(MyTx c_a2qK)
+                    (GHC.Read.readField
+                       @Integer
+                       (GHC.CString.unpackCString# "amount"#)
+                       (Text.ParserCombinators.ReadPrec.reset
+                          @Integer (GHC.Read.readPrec @Integer GHC.Read.$fReadInteger)))
+                    (\ (a1_a2om :: Integer) ->
+                       >>
+                         @Text.ParserCombinators.ReadPrec.ReadPrec
+                         Text.ParserCombinators.ReadPrec.$fMonadReadPrec
+                         @()
+                         @(MyTx c_a2qK)
+                         (GHC.Read.expectP
+                            (Text.Read.Lex.Punc (GHC.CString.unpackCString# ","#)))
+                         (>>=
+                            @Text.ParserCombinators.ReadPrec.ReadPrec
+                            Text.ParserCombinators.ReadPrec.$fMonadReadPrec
+                            @c_a2qK
+                            @(MyTx c_a2qK)
+                            (GHC.Read.readField
+                               @c_a2qK
+                               (GHC.CString.unpackCString# "currency"#)
+                               (Text.ParserCombinators.ReadPrec.reset
+                                  @c_a2qK (GHC.Read.readPrec @c_a2qK $dRead1_a2qL)))
+                            (\ (a2_a2on :: c_a2qK) ->
+                               >>
+                                 @Text.ParserCombinators.ReadPrec.ReadPrec
+                                 Text.ParserCombinators.ReadPrec.$fMonadReadPrec
+                                 @()
+                                 @(MyTx c_a2qK)
+                                 (GHC.Read.expectP
+                                    (Text.Read.Lex.Punc (GHC.CString.unpackCString# "}"#)))
+                                 (return
+                                    @Text.ParserCombinators.ReadPrec.ReadPrec
+                                    Text.ParserCombinators.ReadPrec.$fMonadReadPrec
+                                    @(MyTx c_a2qK)
+                                    (Main.MyTx @c_a2qK a1_a2om a2_a2on)))))))))
+
+Rec {
+-- RHS size: {terms: 11, types: 10, coercions: 0, joins: 0/0}
+Main.$fReadMyTx [InlPrag=NOUSERINLINE CONLIKE]
+  :: forall c. Read c => Read (MyTx c)
+[GblId[DFunId], Arity=1]
+Main.$fReadMyTx
+  = \ (@c_a2qK) ($dRead1_a2qL :: Read c_a2qK) ->
+      GHC.Read.C:Read
+        @(MyTx c_a2qK)
+        ($creadsPrec_r2FN @c_a2qK $dRead1_a2qL)
+        ($creadList_r2FM @c_a2qK $dRead1_a2qL)
+        ($creadPrec_r2FK @c_a2qK $dRead1_a2qL)
+        ($creadListPrec_r2FL @c_a2qK $dRead1_a2qL)
+
+-- RHS size: {terms: 5, types: 7, coercions: 0, joins: 0/0}
+$creadListPrec_r2FL
+  :: forall c.
+     Read c =>
+     Text.ParserCombinators.ReadPrec.ReadPrec [MyTx c]
+[GblId, Arity=1, Unf=OtherCon []]
+$creadListPrec_r2FL
+  = \ (@c_a2qK) ($dRead1_a2qL :: Read c_a2qK) ->
+      GHC.Read.readListPrecDefault
+        @(MyTx c_a2qK) (Main.$fReadMyTx @c_a2qK $dRead1_a2qL)
+
+-- RHS size: {terms: 5, types: 7, coercions: 0, joins: 0/0}
+$creadList_r2FM :: forall c. Read c => ReadS [MyTx c]
+[GblId, Arity=1, Unf=OtherCon []]
+$creadList_r2FM
+  = \ (@c_a2qK) ($dRead1_a2qL :: Read c_a2qK) ->
+      GHC.Read.readListDefault
+        @(MyTx c_a2qK) (Main.$fReadMyTx @c_a2qK $dRead1_a2qL)
+
+-- RHS size: {terms: 5, types: 7, coercions: 0, joins: 0/0}
+$creadsPrec_r2FN :: forall c. Read c => Int -> ReadS (MyTx c)
+[GblId, Arity=1, Unf=OtherCon []]
+$creadsPrec_r2FN
+  = \ (@c_a2qK) ($dRead1_a2qL :: Read c_a2qK) ->
+      GHC.Read.$dmreadsPrec
+        @(MyTx c_a2qK) (Main.$fReadMyTx @c_a2qK $dRead1_a2qL)
+end Rec }
+
+-- RHS size: {terms: 42, types: 32, coercions: 0, joins: 0/0}
+$cshowsPrec_r2FO :: forall c. Show c => Int -> MyTx c -> ShowS
+[GblId, Arity=3, Unf=OtherCon []]
+$cshowsPrec_r2FO
+  = \ (@c_a2pW)
+      ($dShow1_a2pX :: Show c_a2pW)
+      (a_a2oj :: Int)
+      (ds_d2B0 :: MyTx c_a2pW) ->
+      case ds_d2B0 of { MyTx b1_a2ok b2_a2ol ->
+      showParen
+        (>= @Int GHC.Classes.$fOrdInt a_a2oj (GHC.Types.I# 11#))
+        (. @String
+           @String
+           @String
+           (showString (GHC.CString.unpackCString# "MyTx {"#))
+           (. @String
+              @String
+              @String
+              (showString (GHC.CString.unpackCString# "amount = "#))
+              (. @String
+                 @String
+                 @String
+                 (showsPrec
+                    @Integer GHC.Show.$fShowInteger (GHC.Types.I# 0#) b1_a2ok)
+                 (. @String
+                    @String
+                    @String
+                    GHC.Show.showCommaSpace
+                    (. @String
+                       @String
+                       @String
+                       (showString (GHC.CString.unpackCString# "currency = "#))
+                       (. @String
+                          @String
+                          @String
+                          (showsPrec @c_a2pW $dShow1_a2pX (GHC.Types.I# 0#) b2_a2ol)
+                          (showString (GHC.CString.unpackCString# "}"#))))))))
+      }
+
+Rec {
+-- RHS size: {terms: 9, types: 9, coercions: 0, joins: 0/0}
+Main.$fShowMyTx [InlPrag=NOUSERINLINE CONLIKE]
+  :: forall c. Show c => Show (MyTx c)
+[GblId[DFunId], Arity=1]
+Main.$fShowMyTx
+  = \ (@c_a2pW) ($dShow1_a2pX :: Show c_a2pW) ->
+      GHC.Show.C:Show
+        @(MyTx c_a2pW)
+        ($cshowsPrec_r2FO @c_a2pW $dShow1_a2pX)
+        ($cshow_r2FQ @c_a2pW $dShow1_a2pX)
+        ($cshowList_r2FP @c_a2pW $dShow1_a2pX)
+
+-- RHS size: {terms: 5, types: 7, coercions: 0, joins: 0/0}
+$cshowList_r2FP :: forall c. Show c => [MyTx c] -> ShowS
+[GblId, Arity=1, Unf=OtherCon []]
+$cshowList_r2FP
+  = \ (@c_a2pW) ($dShow1_a2pX :: Show c_a2pW) ->
+      GHC.Show.$dmshowList
+        @(MyTx c_a2pW) (Main.$fShowMyTx @c_a2pW $dShow1_a2pX)
+
+-- RHS size: {terms: 5, types: 7, coercions: 0, joins: 0/0}
+$cshow_r2FQ :: forall c. Show c => MyTx c -> String
+[GblId, Arity=1, Unf=OtherCon []]
+$cshow_r2FQ
+  = \ (@c_a2pW) ($dShow1_a2pX :: Show c_a2pW) ->
+      GHC.Show.$dmshow
+        @(MyTx c_a2pW) (Main.$fShowMyTx @c_a2pW $dShow1_a2pX)
+end Rec }
+
+-- RHS size: {terms: 6, types: 8, coercions: 0, joins: 0/0}
+currency :: forall c. MyTx c -> c
+[GblId[[RecSel]], Arity=1, Unf=OtherCon []]
+currency
+  = \ (@c_a1T5) (ds_d2AX :: MyTx c_a1T5) ->
+      case ds_d2AX of { MyTx ds1_d2AY ds2_d2AZ -> ds2_d2AZ }
+
+-- RHS size: {terms: 6, types: 8, coercions: 0, joins: 0/0}
+amount :: forall c. MyTx c -> Integer
+[GblId[[RecSel]], Arity=1, Unf=OtherCon []]
+amount
+  = \ (@c_a1T3) (ds_d2AU :: MyTx c_a1T3) ->
+      case ds_d2AU of { MyTx ds1_d2AV ds2_d2AW -> ds1_d2AV }
+
+-- RHS size: {terms: 18, types: 25, coercions: 6, joins: 0/1}
+$cencoder_r2FR :: forall c. Show c => MyTx c -> Encoder
+[GblId, Arity=1, Unf=OtherCon []]
+$cencoder_r2FR
+  = \ (@c_a2wo) ($dShow1_a2wp :: Show c_a2wo) ->
+      let {
+        $dShow2_a2wx :: Show (Integer, c_a2wo)
+        [LclId]
+        $dShow2_a2wx
+          = GHC.Show.$fShow(,)
+              @Integer @c_a2wo GHC.Show.$fShowInteger $dShow1_a2wp } in
+      (\ (tx_a1GL :: MyTx c_a2wo) ->
+         shows
+           @(Integer, c_a2wo)
+           $dShow2_a2wx
+           (case tx_a1GL of { MyTx ds_d2AV ds1_d2AW -> ds_d2AV },
+            case tx_a1GL of { MyTx ds_d2AY ds1_d2AZ -> ds1_d2AZ }))
+      `cast` (<MyTx c_a2wo>_R %<'Many>_N ->_R Sym (Main.N:Encoder[0])
+              :: (MyTx c_a2wo -> String -> String) ~R# (MyTx c_a2wo -> Encoder))
+
+-- RHS size: {terms: 1, types: 0, coercions: 11, joins: 0/0}
+Main.$fToMyTx [InlPrag=INLINE (sat-args=0)]
+  :: forall c. Show c => To (MyTx c)
+[GblId[DFunId(nt)], Arity=1, Unf=OtherCon []]
+Main.$fToMyTx
+  = $cencoder_r2FR
+    `cast` (forall (c :: <*>_N).
+            <Show c>_R %<'Many>_N ->_R Sym (Main.N:To[0] <MyTx c>_N)
+            :: (forall {c}. Show c => MyTx c -> Encoder)
+               ~R# (forall {c}. Show c => To (MyTx c)))
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule1_r2FS :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$trModule1_r2FS = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule2_r2FT :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$trModule2_r2FT = GHC.Types.TrNameS $trModule1_r2FS
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule3_r2FU :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$trModule3_r2FU = "Main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule4_r2FV :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$trModule4_r2FV = GHC.Types.TrNameS $trModule3_r2FU
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+Main.$trModule :: GHC.Types.Module
+[GblId, Unf=OtherCon []]
+Main.$trModule = GHC.Types.Module $trModule2_r2FT $trModule4_r2FV
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep_r2FW :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep_r2FW
+  = GHC.Types.KindRepTyConApp
+      GHC.Types.$tcChar (GHC.Types.[] @GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep1_r2FX :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep1_r2FX
+  = GHC.Types.KindRepTyConApp
+      GHC.Types.$tcConstraint (GHC.Types.[] @GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep2_r2FY :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep2_r2FY
+  = GHC.Types.KindRepTyConApp
+      GHC.Num.Integer.$tcInteger (GHC.Types.[] @GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep3_r2FZ :: [GHC.Types.KindRep]
+[GblId, Unf=OtherCon []]
+$krep3_r2FZ
+  = GHC.Types.:
+      @GHC.Types.KindRep $krep_r2FW (GHC.Types.[] @GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep4_r2G0 :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep4_r2G0 = GHC.Types.KindRepTyConApp GHC.Types.$tc[] $krep3_r2FZ
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep5_r2G1 :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep5_r2G1 = GHC.Types.KindRepFun $krep4_r2G0 $krep4_r2G0
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep6_r2G2 :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep6_r2G2 = GHC.Types.KindRepFun GHC.Types.krep$* $krep1_r2FX
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$krep7_r2G3 :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep7_r2G3 = GHC.Types.KindRepVar 0#
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep8_r2G4 :: [GHC.Types.KindRep]
+[GblId, Unf=OtherCon []]
+$krep8_r2G4
+  = GHC.Types.:
+      @GHC.Types.KindRep $krep7_r2G3 (GHC.Types.[] @GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep9_r2G5 :: [GHC.Types.KindRep]
+[GblId, Unf=OtherCon []]
+$krep9_r2G5
+  = GHC.Types.: @GHC.Types.KindRep $krep4_r2G0 $krep8_r2G4
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep10_r2G6 :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep10_r2G6
+  = GHC.Types.KindRepTyConApp GHC.Tuple.$tc(,) $krep9_r2G5
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep11_r2G7 :: [GHC.Types.KindRep]
+[GblId, Unf=OtherCon []]
+$krep11_r2G7
+  = GHC.Types.:
+      @GHC.Types.KindRep $krep10_r2G6 (GHC.Types.[] @GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep12_r2G8 :: [GHC.Types.KindRep]
+[GblId, Unf=OtherCon []]
+$krep12_r2G8
+  = GHC.Types.: @GHC.Types.KindRep $krep4_r2G0 $krep11_r2G7
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep13_r2G9 :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep13_r2G9
+  = GHC.Types.KindRepTyConApp Data.Either.$tcEither $krep12_r2G8
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep14_r2Ga :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep14_r2Ga = GHC.Types.KindRepFun $krep4_r2G0 $krep13_r2G9
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcEncoder1_r2Gb :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$tcEncoder1_r2Gb = "Encoder"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcEncoder2_r2Gc :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$tcEncoder2_r2Gc = GHC.Types.TrNameS $tcEncoder1_r2Gb
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tcEncoder :: GHC.Types.TyCon
+[GblId, Unf=OtherCon []]
+Main.$tcEncoder
+  = GHC.Types.TyCon
+      160114362047763830##
+      6678536959182150129##
+      Main.$trModule
+      $tcEncoder2_r2Gc
+      0#
+      GHC.Types.krep$*
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep15_r2Gd :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep15_r2Gd
+  = GHC.Types.KindRepTyConApp
+      Main.$tcEncoder (GHC.Types.[] @GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep16_r2Ge :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep16_r2Ge = GHC.Types.KindRepFun $krep7_r2G3 $krep15_r2Gd
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep17_r2Gf :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep17_r2Gf = GHC.Types.KindRepFun $krep5_r2G1 $krep15_r2Gd
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'Encoder1_r2Gg :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$tc'Encoder1_r2Gg = "'Encoder"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'Encoder2_r2Gh :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$tc'Encoder2_r2Gh = GHC.Types.TrNameS $tc'Encoder1_r2Gg
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tc'Encoder :: GHC.Types.TyCon
+[GblId, Unf=OtherCon []]
+Main.$tc'Encoder
+  = GHC.Types.TyCon
+      4451223165699604945##
+      13689698657090924059##
+      Main.$trModule
+      $tc'Encoder2_r2Gh
+      0#
+      $krep17_r2Gf
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcTo1_r2Gi :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$tcTo1_r2Gi = "To"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcTo2_r2Gj :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$tcTo2_r2Gj = GHC.Types.TrNameS $tcTo1_r2Gi
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tcTo :: GHC.Types.TyCon
+[GblId, Unf=OtherCon []]
+Main.$tcTo
+  = GHC.Types.TyCon
+      12273566066852042829##
+      5419137004909006028##
+      Main.$trModule
+      $tcTo2_r2Gj
+      0#
+      $krep6_r2G2
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep18_r2Gk :: [GHC.Types.KindRep]
+[GblId, Unf=OtherCon []]
+$krep18_r2Gk
+  = GHC.Types.:
+      @GHC.Types.KindRep $krep7_r2G3 (GHC.Types.[] @GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep19_r2Gl :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep19_r2Gl = GHC.Types.KindRepTyConApp Main.$tcTo $krep18_r2Gk
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep20_r2Gm :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep20_r2Gm = GHC.Types.KindRepFun $krep16_r2Ge $krep19_r2Gl
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'C:To1_r2Gn :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$tc'C:To1_r2Gn = "'C:To"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'C:To2_r2Go :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$tc'C:To2_r2Go = GHC.Types.TrNameS $tc'C:To1_r2Gn
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tc'C:To :: GHC.Types.TyCon
+[GblId, Unf=OtherCon []]
+Main.$tc'C:To
+  = GHC.Types.TyCon
+      16910915773500158988##
+      3067806490468324860##
+      Main.$trModule
+      $tc'C:To2_r2Go
+      1#
+      $krep20_r2Gm
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcDecoder1_r2Gp :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$tcDecoder1_r2Gp = "Decoder"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcDecoder2_r2Gq :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$tcDecoder2_r2Gq = GHC.Types.TrNameS $tcDecoder1_r2Gp
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tcDecoder :: GHC.Types.TyCon
+[GblId, Unf=OtherCon []]
+Main.$tcDecoder
+  = GHC.Types.TyCon
+      10826797033630653515##
+      9131182563151517788##
+      Main.$trModule
+      $tcDecoder2_r2Gq
+      0#
+      GHC.Types.krep$*Arr*
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep21_r2Gr :: [GHC.Types.KindRep]
+[GblId, Unf=OtherCon []]
+$krep21_r2Gr
+  = GHC.Types.:
+      @GHC.Types.KindRep $krep7_r2G3 (GHC.Types.[] @GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep22_r2Gs :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep22_r2Gs
+  = GHC.Types.KindRepTyConApp Main.$tcDecoder $krep21_r2Gr
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep23_r2Gt :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep23_r2Gt = GHC.Types.KindRepFun $krep14_r2Ga $krep22_r2Gs
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'Decoder1_r2Gu :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$tc'Decoder1_r2Gu = "'Decoder"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'Decoder2_r2Gv :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$tc'Decoder2_r2Gv = GHC.Types.TrNameS $tc'Decoder1_r2Gu
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tc'Decoder :: GHC.Types.TyCon
+[GblId, Unf=OtherCon []]
+Main.$tc'Decoder
+  = GHC.Types.TyCon
+      18213267884574969043##
+      459102894664079475##
+      Main.$trModule
+      $tc'Decoder2_r2Gv
+      1#
+      $krep23_r2Gt
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcFrom1_r2Gw :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$tcFrom1_r2Gw = "From"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcFrom2_r2Gx :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$tcFrom2_r2Gx = GHC.Types.TrNameS $tcFrom1_r2Gw
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tcFrom :: GHC.Types.TyCon
+[GblId, Unf=OtherCon []]
+Main.$tcFrom
+  = GHC.Types.TyCon
+      11439164760044864578##
+      16802341171490259107##
+      Main.$trModule
+      $tcFrom2_r2Gx
+      0#
+      $krep6_r2G2
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcLedger1_r2Gy :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$tcLedger1_r2Gy = "Ledger"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcLedger2_r2Gz :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$tcLedger2_r2Gz = GHC.Types.TrNameS $tcLedger1_r2Gy
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tcLedger :: GHC.Types.TyCon
+[GblId, Unf=OtherCon []]
+Main.$tcLedger
+  = GHC.Types.TyCon
+      12164773410510886087##
+      252498163441645542##
+      Main.$trModule
+      $tcLedger2_r2Gz
+      0#
+      $krep6_r2G2
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcMyLedger1_r2GA :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$tcMyLedger1_r2GA = "MyLedger"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcMyLedger2_r2GB :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$tcMyLedger2_r2GB = GHC.Types.TrNameS $tcMyLedger1_r2GA
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tcMyLedger :: GHC.Types.TyCon
+[GblId, Unf=OtherCon []]
+Main.$tcMyLedger
+  = GHC.Types.TyCon
+      14466839644250976655##
+      11649056633961230856##
+      Main.$trModule
+      $tcMyLedger2_r2GB
+      0#
+      GHC.Types.krep$*Arr*
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcMyTx1_r2GC :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$tcMyTx1_r2GC = "MyTx"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcMyTx2_r2GD :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$tcMyTx2_r2GD = GHC.Types.TrNameS $tcMyTx1_r2GC
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tcMyTx :: GHC.Types.TyCon
+[GblId, Unf=OtherCon []]
+Main.$tcMyTx
+  = GHC.Types.TyCon
+      7227813229161089981##
+      14350719407462351887##
+      Main.$trModule
+      $tcMyTx2_r2GD
+      0#
+      GHC.Types.krep$*Arr*
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep24_r2GE :: [GHC.Types.KindRep]
+[GblId, Unf=OtherCon []]
+$krep24_r2GE
+  = GHC.Types.:
+      @GHC.Types.KindRep $krep7_r2G3 (GHC.Types.[] @GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep25_r2GF :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep25_r2GF = GHC.Types.KindRepTyConApp Main.$tcMyTx $krep24_r2GE
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep26_r2GG :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep26_r2GG = GHC.Types.KindRepFun $krep7_r2G3 $krep25_r2GF
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep27_r2GH :: GHC.Types.KindRep
+[GblId, Unf=OtherCon []]
+$krep27_r2GH = GHC.Types.KindRepFun $krep2_r2FY $krep26_r2GG
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'MyTx1_r2GI :: GHC.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$tc'MyTx1_r2GI = "'MyTx"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'MyTx2_r2GJ :: GHC.Types.TrName
+[GblId, Unf=OtherCon []]
+$tc'MyTx2_r2GJ = GHC.Types.TrNameS $tc'MyTx1_r2GI
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tc'MyTx :: GHC.Types.TyCon
+[GblId, Unf=OtherCon []]
+Main.$tc'MyTx
+  = GHC.Types.TyCon
+      7919874331898548986##
+      15454714138397324072##
+      Main.$trModule
+      $tc'MyTx2_r2GJ
+      1#
+      $krep27_r2GH
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$dOrd_r2GK :: Ord [Char]
+[GblId]
+$dOrd_r2GK = GHC.Classes.$fOrd[] @Char GHC.Classes.$fOrdChar
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$dRead_r2GL :: Read [Char]
+[GblId]
+$dRead_r2GL = GHC.Read.$fRead[] @Char GHC.Read.$fReadChar
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$dLedger_r2GM :: Ledger (MyLedger [Char])
+[GblId]
+$dLedger_r2GM
+  = Main.$fLedgerMyLedger @[Char] $dRead_r2GL $dOrd_r2GK
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$dShow_r2GN :: Show [Char]
+[GblId]
+$dShow_r2GN = GHC.Show.$fShow[] @Char GHC.Show.$fShowChar
+
+-- RHS size: {terms: 106, types: 126, coercions: 15, joins: 0/7}
+main :: IO ()
+[GblId]
+main
+  = print
+      @(MyTx String)
+      (Main.$fShowMyTx @[Char] $dShow_r2GN)
+      ($ @'GHC.Types.LiftedRep
+         @String
+         @(MyTx String)
+         (let {
+            $dFrom_a2p4 :: From (MyTx String)
+            [LclId]
+            $dFrom_a2p4
+              = Main.$fFromMyTx @[Char] $dRead_r2GL $dLedger_r2GM } in
+          let {
+            $dIP_s2ER :: GHC.Stack.Types.CallStack
+            [LclId]
+            $dIP_s2ER
+              = GHC.Stack.Types.pushCallStack
+                  (GHC.CString.unpackCString# "error"#,
+                   GHC.Stack.Types.SrcLoc
+                     (GHC.CString.unpackCString# "main"#)
+                     (GHC.CString.unpackCString# "Main"#)
+                     (GHC.CString.unpackCString# "loop.hs"#)
+                     (GHC.Types.I# 37#)
+                     (GHC.Types.I# 32#)
+                     (GHC.Types.I# 37#)
+                     (GHC.Types.I# 37#))
+                  GHC.Stack.Types.emptyCallStack } in
+          let {
+            $dIP1_s2ES :: GHC.Stack.Types.CallStack
+            [LclId]
+            $dIP1_s2ES
+              = GHC.Stack.Types.pushCallStack
+                  (GHC.CString.unpackCString# "error"#,
+                   GHC.Stack.Types.SrcLoc
+                     (GHC.CString.unpackCString# "main"#)
+                     (GHC.CString.unpackCString# "Main"#)
+                     (GHC.CString.unpackCString# "loop.hs"#)
+                     (GHC.Types.I# 35#)
+                     (GHC.Types.I# 21#)
+                     (GHC.Types.I# 35#)
+                     (GHC.Types.I# 30#))
+                  GHC.Stack.Types.emptyCallStack } in
+          let {
+            $dMonoid_a2p9 :: Monoid (Share (MyTx String))
+            [LclId]
+            $dMonoid_a2p9 = Main.$p1From @(MyTx String) $dFrom_a2p4 } in
+          \ (str_a1GR :: String) ->
+            case ((decoderWithShare
+                     @(MyTx String)
+                     $dFrom_a2p4
+                     (mempty @(Share (MyTx String)) $dMonoid_a2p9))
+                  `cast` (Main.N:Decoder[0] <(Share (MyTx String), MyTx String)>_R
+                          :: Decoder (Share (MyTx String), MyTx String)
+                             ~R# (String
+                                  -> Either Error (String, (Share (MyTx String), MyTx String)))))
+                   str_a1GR
+            of {
+              Left msg_a1GT ->
+                error
+                  @'GHC.Types.LiftedRep
+                  @(MyTx String)
+                  ($dIP1_s2ES
+                   `cast` (Sym (GHC.Classes.N:IP[0]
+                                    <"callStack">_N <GHC.Stack.Types.CallStack>_N)
+                           :: GHC.Stack.Types.CallStack
+                              ~R# (?callStack::GHC.Stack.Types.CallStack)))
+                  msg_a1GT;
+              Right ds_d2AE ->
+                case ds_d2AE of { (ds1_d2AF, ds2_d2AG) ->
+                case ds1_d2AF of wild2_X2 {
+                  [] -> case ds2_d2AG of { (ds3_d2AH, a_a1H0) -> a_a1H0 };
+                  : ipv_s2EW ipv1_s2EY ->
+                    $ @'GHC.Types.LiftedRep
+                      @[Char]
+                      @(MyTx String)
+                      (error
+                         @'GHC.Types.LiftedRep
+                         @(MyTx String)
+                         ($dIP_s2ER
+                          `cast` (Sym (GHC.Classes.N:IP[0]
+                                           <"callStack">_N <GHC.Stack.Types.CallStack>_N)
+                                  :: GHC.Stack.Types.CallStack
+                                     ~R# (?callStack::GHC.Stack.Types.CallStack))))
+                      (++
+                         @Char (GHC.CString.unpackCString# "Leftover input: "#) wild2_X2)
+                }
+                }
+            })
+         (let {
+            tx_s2F0 :: Integer
+            [LclId, Unf=OtherCon []]
+            tx_s2F0 = 5 } in
+          let {
+            tx1_s2F1 :: [Char]
+            [LclId]
+            tx1_s2F1 = GHC.CString.unpackCString# "USD"# } in
+          let {
+            tx2_a1GL :: MyTx [Char]
+            [LclId, Unf=OtherCon []]
+            tx2_a1GL = Main.MyTx @String tx_s2F0 tx1_s2F1 } in
+          shows
+            @(Integer, [Char])
+            (GHC.Show.$fShow(,)
+               @Integer @[Char] GHC.Show.$fShowInteger $dShow_r2GN)
+            (case tx2_a1GL of { MyTx ds_d2AV ds1_d2AW -> ds_d2AV },
+             case tx2_a1GL of { MyTx ds_d2AY ds1_d2AZ -> ds1_d2AZ })
+            (GHC.Types.[] @Char)))
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+:Main.main :: IO ()
+[GblId]
+:Main.main = GHC.TopHandler.runMainIO @() main
+
+
+
+Linking loop ...
