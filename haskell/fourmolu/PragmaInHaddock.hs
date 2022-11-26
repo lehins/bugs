@@ -4,24 +4,24 @@ module PragmaInHaddock where
 --
 -- > bar :: Bar ()
 -- > bar = ()
--- > {-# INLINE bar #-}
+-- > {\-# INLINE bar #-\}
 --
 -- and with regular codeblock
 --
 -- @
 -- bar :: Bar ()
 -- bar = ()
--- {-# INLINE bar #-}
+-- {\-# INLINE bar #-\}
 -- @
 --
 -- Outside of codeblock
 --
--- {-# INLINE bar #-}
+-- {\-# INLINE bar #-\}
 --
 -- Multi-line syntax inside single-line haddock (both in codeblock and outside)
 --
--- {- -}
+-- {\- -\}
 --
--- > {- -}
+-- > {\- -\}
 foo :: ()
 foo = ()
