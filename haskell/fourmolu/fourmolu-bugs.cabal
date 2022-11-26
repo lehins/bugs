@@ -1,0 +1,17 @@
+name:                fourmolu-bugs
+version:             0.0.0
+synopsis:            Fourmolu bugs
+description:         Repro of bugs
+homepage:            https://github.com/lehins/bugs
+license:             BSD3
+license-file:        LICENSE
+author:              Alexey Kuleshevich
+maintainer:          alexey@kuleshevi.ch
+copyright:           2022 Alexey Kuleshevich
+build-type:          Simple
+cabal-version:       >=1.10
+
+library
+  exposed-modules:     PragmaInHaddock
+                       ValidHaddockUnparseable
+  build-depends:       base >= 4.9 && < 5
