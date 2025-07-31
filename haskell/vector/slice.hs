@@ -2,7 +2,6 @@
 module Main where
 
 import Control.Exception
-import Control.Monad as M
 import Data.List as List
 import qualified Data.Vector as V
 import qualified Data.Vector.Generic as VG
@@ -33,6 +32,7 @@ printSlices name sliceWith xs = do
   tryErrorPrint "   too large size: "  (sliceWith 2 6 xs)
   tryErrorPrint "   too large ix size: " (sliceWith 6 6 xs)
 
+main :: IO ()
 main = do
   let xs = [1, 2, 3, 4, 5] :: [Int]
   printSlices "List" sliceList xs
